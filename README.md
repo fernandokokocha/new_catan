@@ -18,7 +18,17 @@ Continuation of [Catan v1](https://github.com/fernandokokocha/catan)
 
 * `bundle install`
 
-## Quality tools
+## Mutant
+
+Overcommit can't trigger mutant. Please don't commit any code that doesn't pass mutantion tests.
+
+To run:
+
+`bundle exec mutant --include lib --use rspec 'Catan'`
+
+The last argument is a pattern (could contain a '*' wildcard) for filenames to test against.
+
+## Other quality tools
 
 Overcommit tool uses Rubocop, Reek, and RSpec on the adequate development phases. There's no need for additional configuration on your side.
 
