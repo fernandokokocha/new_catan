@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Catan do
   it 'can be created' do
     expect { Catan.new } .to_not raise_error

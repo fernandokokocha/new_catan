@@ -12,25 +12,26 @@ Continuation of [Catan v1](https://github.com/fernandokokocha/catan)
 
 ## Requirements
 
-For usage:
 * Ruby 2.4.1
 
-For development (see `catan.gemspec`):
-* RSpec 3.7
-* Rubocop 0.62
-* overcommit 0.46
-* Reek 3.5
+## Setup
+
+* `bundle install`
+
+## Quality tools
 
 Overcommit tool uses Rubocop, Reek, and RSpec on the adequate development phases. There's no need for additional configuration on your side.
 
-## Test
+If you want to run them separately:
 
-Issue `rspec` in the root directory.
+### Test
 
-## RuboCop
+Issue `bundle exec rspec` in the root directory.
 
-Issue `rubocop` in the root directory.
+### RuboCop
 
-## Reek
+Issue `bundle exec rubocop` in the root directory.
 
-Issue `reek` in the root directory.
+### Reek
+
+Issue `bundle exec reek` in the root directory.
