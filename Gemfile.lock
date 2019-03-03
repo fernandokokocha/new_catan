@@ -121,11 +121,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mutant-rspec
-  overcommit (~> 0.46)
-  reek (~> 5.3)
-  rspec (~> 3.7)
-  rubocop (~> 0.62)
+  mutant-rspec (~> 0.8.24)
+  overcommit (~> 0.46.0)
+  reek (~> 5.3.1)
+  rspec (~> 3.8.0)
+  rubocop (~> 0.65.0)
 
 RUBY VERSION
    ruby 2.4.1p111
