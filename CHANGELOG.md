@@ -1,6 +1,8 @@
-## [Unreleased]
+## [0.0.1]
 ### Added
-- ...
-
-### Changed
-- ...
+- Project setup
+- Quality tools: rspec
+- Quality tools: reek
+- Quality tools: rubocop
+- Quality tools: mutant
+- Quality tools: overcommit (will run all above except mutant)
