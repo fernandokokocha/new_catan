@@ -19,8 +19,9 @@ For development (see `catan.gemspec`):
 * RSpec 3.7
 * Rubocop 0.62
 * overcommit 0.46
+* Reek 3.5
 
-Overcommit tool uses Rubocop and RSpec on the adequate development phases. There's no need for additional configuration on your side.
+Overcommit tool uses Rubocop, Reek, and RSpec on the adequate development phases. There's no need for additional configuration on your side.
 
 ## Test
 
@@ -29,3 +30,7 @@ Issue `rspec` in the root directory.
 ## RuboCop
 
 Issue `rubocop` in the root directory.
+
+## Reek
+
+Issue `reek` in the root directory.
