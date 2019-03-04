@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require File.join(__dir__, 'entities', 'map.rb')
+Dir[File.join(__dir__, 'entities', '*.rb')].each { |file| require file }
 
-require File.join(__dir__, 'interactors', 'setup_game.rb')
+Dir[File.join(__dir__, 'interactors', '*.rb')].each { |file| require file }
 
 class Catan
 end
