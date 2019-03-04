@@ -1,10 +1,20 @@
 # frozen_string_literal: true
 
 class SetupGame
-  # WIP - smells of :reek:UtilityFunction
+  GameAlreadyInitialized = Class.new(StandardError)
+
+  def self.invoke(state)
+    new(state).invoke
+  end
+
+  def initialize(state)
+    @state = state
+  end
+
   def invoke
-    {
-      map: Map.new
-    }
+    raise GameAlreadyInitialized if @state.setup?
+
+    @state.setup
+    true
   end
 end
