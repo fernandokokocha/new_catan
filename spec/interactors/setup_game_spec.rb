@@ -14,7 +14,7 @@ describe SetupGame do
     expect(call).to be(true)
   end
 
-  it 'initializes game' do
+  it 'sets up game' do
     call
     expect(game.state.setup?).to be(true)
   end
