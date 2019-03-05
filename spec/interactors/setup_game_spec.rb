@@ -1,24 +1,34 @@
 # frozen_string_literal: true
 
 describe SetupGame do
-  let(:state) { State.new }
-  let(:interactor) { SetupGame }
+  let(:game) { Catan.new }
+  let(:interactor) { :setup_game }
+
+  subject(:call) { game.handle(interactor) }
 
   it 'can be invoked' do
-    expect { interactor.invoke(state) }.to_not raise_error
+    expect { call }.to_not raise_error
   end
 
   it 'returns true' do
-    expect(interactor.invoke(state)).to eql(true)
+    expect(call).to be(true)
+  end
+
+  it 'initializes game' do
+    call
+    expect(game.state.setup?).to be(true)
+  end
+
+  it 'is immutable' do
+    old_state = game.state
+    call
+    expect(game.state).to_not be(old_state)
   end
 
   context 'invoked second time' do
-    before(:each) do
-      interactor.invoke(state)
-    end
-
     it 'raises error' do
-      expect { interactor.invoke(state) }.to raise_error(SetupGame::GameAlreadyInitialized)
+      game.handle(interactor)
+      expect { call }.to raise_error(SetupGame::GameAlreadyInitialized)
     end
   end
 end

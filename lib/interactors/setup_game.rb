@@ -8,13 +8,13 @@ class SetupGame
   end
 
   def initialize(state)
-    @state = state
+    @state = state.clone
   end
 
   def invoke
     raise GameAlreadyInitialized if @state.setup?
 
     @state.setup
-    true
+    @state
   end
 end
