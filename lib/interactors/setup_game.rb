@@ -3,18 +3,17 @@
 class SetupGame
   GameAlreadyInitialized = Class.new(StandardError)
 
-  def self.invoke(state)
-    new(state).invoke
+  attr_reader :player_names
+
+  def initialize(player_names)
+    @player_names = player_names
   end
 
-  def initialize(state)
-    @state = state.clone
-  end
+  def invoke(state)
+    raise GameAlreadyInitialized if state.setup?
 
-  def invoke
-    raise GameAlreadyInitialized if @state.setup?
-
-    @state.setup
-    @state
+    state.setup
+    state.setup_players(player_names)
+    state
   end
 end

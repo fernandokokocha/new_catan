@@ -15,8 +15,8 @@ class Catan
     @state = State.new
   end
 
-  def handle(_interactor)
-    @state = SetupGame.invoke(@state)
+  def handle(interactor)
+    @state = interactor.invoke(@state.clone)
     true
   end
 end

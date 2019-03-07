@@ -20,7 +20,7 @@ Continuation of [Catan v1](https://github.com/fernandokokocha/catan)
 
 ## Mutant
 
-Overcommit can't trigger mutant. Please don't commit any code that doesn't pass mutantion tests.
+Overcommit can't trigger mutant. Please don't commit any code that doesn't pass mutation tests.
 
 To run:
 

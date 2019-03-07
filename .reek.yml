@@ -1,3 +1,6 @@
 detectors:
   IrresponsibleModule:
     enabled: false
+  FeatureEnvy:
+    exclude:
+      - 'SetupGame'

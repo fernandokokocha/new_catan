@@ -2,7 +2,8 @@
 
 describe SetupGame do
   let(:game) { Catan.new }
-  let(:interactor) { :setup_game }
+  let(:player_names) { %w[Bartek Leo] }
+  let(:interactor) { SetupGame.new(player_names) }
 
   subject(:call) { game.handle(interactor) }
 
@@ -17,6 +18,11 @@ describe SetupGame do
   it 'sets up game' do
     call
     expect(game.setup?).to be(true)
+  end
+
+  it 'sets up players' do
+    call
+    expect(game.players).to eq([{ name: 'Bartek' }, { name: 'Leo' }])
   end
 
   it 'is immutable' do

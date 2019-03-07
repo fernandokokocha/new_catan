@@ -15,4 +15,8 @@ class State
   def setup
     @setup = true
   end
+
+  def setup_players(player_names)
+    @players = player_names.map { |name| { name: name } }
+  end
 end
