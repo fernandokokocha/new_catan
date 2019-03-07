@@ -16,7 +16,7 @@ describe SetupGame do
 
   it 'sets up game' do
     call
-    expect(game.state.setup?).to be(true)
+    expect(game.setup?).to be(true)
   end
 
   it 'is immutable' do

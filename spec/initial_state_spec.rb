@@ -4,6 +4,6 @@ describe 'initial state' do
   let(:game) { Catan.new }
 
   it 'is not setup' do
-    expect(game.state.setup?).to be(false)
+    expect(game.setup?).to be(false)
   end
 end
