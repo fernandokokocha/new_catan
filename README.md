@@ -24,9 +24,9 @@ Overcommit can't trigger mutant. Please don't commit any code that doesn't pass 
 
 To run:
 
-`bundle exec mutant --include lib --use rspec 'Catan'`
+`bundle exec mutant --use rspec 'Catan'`
 
-The last argument is a pattern (could contain a '*' wildcard) for filenames to test against.
+The last argument is a pattern (could contain a '*' wildcard) for names (class and methods) to mutate.
 
 ## Other quality tools
 
