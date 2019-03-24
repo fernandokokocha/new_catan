@@ -9,7 +9,7 @@ Dir[File.join(__dir__, 'interactors', '*.rb')].each { |file| require file }
 class Catan
   extend Forwardable
   attr_reader :state
-  def_delegators :state, :setup?, :players
+  def_delegators :state, :setup?, :players, :settlements, :roads
 
   def initialize
     @state = State.new
