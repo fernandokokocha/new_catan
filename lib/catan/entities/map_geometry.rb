@@ -97,6 +97,6 @@ class MapGeometry
   ].freeze
 
   def self.bordering_spot_indexes_for(spot_index)
-    BORDERING_SPOTS[spot_index]
+    BORDERING_SPOTS.fetch(spot_index)
   end
 end
