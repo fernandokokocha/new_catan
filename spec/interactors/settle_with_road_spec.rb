@@ -53,7 +53,31 @@ describe SettleWithRoad do
     end
 
     it 'returns descriptive message' do
-      expect(call.message).to eq("Spot \##{spot_index} is already taken")
+      expect(call.message).to eq("Spot \##{spot_index}: is already settled")
+    end
+
+    it "doesn't change the state" do
+      old = game.state
+      call
+      new = game.state
+      expect(new).to be(old)
+    end
+  end
+
+  context 'bordering spot is taken' do
+    let(:bordering_spot) { 6 }
+
+    before(:each) do
+      game.handle(SetupGame.new(%w[Bartek Leo]))
+      game.handle(SettleWithRoad.new(bordering_spot, 5))
+    end
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq("Spot \##{spot_index}: bordering spot \##{bordering_spot} is already settled")
     end
 
     it "doesn't change the state" do

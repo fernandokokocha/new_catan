@@ -7,3 +7,8 @@ Metrics/BlockLength:
 
 Style/Documentation:
   Enabled: false
+
+Style/AsciiComments:
+  AllowedChars:
+    - ╲
+    - ╱
