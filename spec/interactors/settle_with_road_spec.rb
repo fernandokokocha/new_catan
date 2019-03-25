@@ -14,7 +14,7 @@ describe SettleWithRoad do
     end
   end
 
-  context 'on valid' do
+  context 'on clear state' do
     before(:each) { game.handle(SetupGame.new(%w[Bartek Leo])) }
 
     it 'returns true' do
@@ -50,6 +50,10 @@ describe SettleWithRoad do
 
     it 'returns failure' do
       expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq("Spot \##{spot_index} is already taken")
     end
 
     it "doesn't change the state" do

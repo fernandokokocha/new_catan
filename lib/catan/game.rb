@@ -16,7 +16,7 @@ class Game
 
     @state = result
     true
-  rescue SettleWithRoad::IllegalOperation => _
-    InteractionFailure.new(message: '')
+  rescue SettleWithRoad::IllegalOperation => exeception
+    InteractionFailure.new(message: exeception.message)
   end
 end
