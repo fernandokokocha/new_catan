@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-describe Catan do
-  let(:game) { Catan.new }
+describe Game do
+  let(:game) { Game.new }
 
   context 'initially' do
     it 'is not setup' do

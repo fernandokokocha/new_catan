@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe SetupGame do
-  let(:game) { Catan.new }
+  let(:game) { Game.new }
   let(:player_names) { %w[Bartek Leo] }
   let(:interactor) { SetupGame.new(player_names) }
 

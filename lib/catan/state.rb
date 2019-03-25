@@ -26,6 +26,10 @@ class State
     @settlements << settlement
   end
 
+  def settled?(spot_index)
+    @settlements.include?(Settlement.new(spot_index: spot_index))
+  end
+
   def build_road(road)
     @roads << road
   end
