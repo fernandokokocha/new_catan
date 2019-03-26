@@ -3,7 +3,7 @@
 class SetupGame < Interactor
   GameAlreadyInitialized = Class.new(StandardError)
 
-  def initialize(player_names)
+  def initialize(player_names:)
     @player_names = player_names
   end
 

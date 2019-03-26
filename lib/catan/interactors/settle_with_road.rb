@@ -3,7 +3,7 @@
 class SettleWithRoad < Interactor
   GameNotInitialized = Class.new(StandardError)
 
-  def initialize(settlement_spot, road_extension_spot)
+  def initialize(settlement_spot:, road_extension_spot:)
     @settlement_spot = settlement_spot
     @road_extension_spot = road_extension_spot
   end

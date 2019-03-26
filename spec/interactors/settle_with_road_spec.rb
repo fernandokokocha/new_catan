@@ -4,7 +4,7 @@ describe SettleWithRoad do
   let(:game) { Game.new }
   let(:spot_index) { 1 }
   let(:other_spot_index) { 2 }
-  let(:interactor) { SettleWithRoad.new(spot_index, other_spot_index) }
+  let(:interactor) { SettleWithRoad.new(settlement_spot: spot_index, road_extension_spot: other_spot_index) }
 
   subject(:call) { game.handle(interactor) }
 
@@ -15,7 +15,7 @@ describe SettleWithRoad do
   end
 
   context 'on clear state' do
-    before(:each) { game.handle(SetupGame.new(%w[Bartek Leo])) }
+    before(:each) { game.handle(SetupGame.new(player_names: %w[Bartek Leo])) }
 
     it 'returns success' do
       expect(call.success?).to be(true)
@@ -44,8 +44,8 @@ describe SettleWithRoad do
 
   context 'spot is already taken' do
     before(:each) do
-      game.handle(SetupGame.new(%w[Bartek Leo]))
-      game.handle(SettleWithRoad.new(spot_index, 6))
+      game.handle(SetupGame.new(player_names: %w[Bartek Leo]))
+      game.handle(SettleWithRoad.new(settlement_spot: spot_index, road_extension_spot: 6))
     end
 
     it 'returns failure' do
@@ -68,8 +68,8 @@ describe SettleWithRoad do
     let(:bordering_spot) { 6 }
 
     before(:each) do
-      game.handle(SetupGame.new(%w[Bartek Leo]))
-      game.handle(SettleWithRoad.new(bordering_spot, 5))
+      game.handle(SetupGame.new(player_names: %w[Bartek Leo]))
+      game.handle(SettleWithRoad.new(settlement_spot: bordering_spot, road_extension_spot: 5))
     end
 
     it 'returns failure' do

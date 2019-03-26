@@ -3,7 +3,7 @@
 describe SetupGame do
   let(:game) { Game.new }
   let(:player_names) { %w[Bartek Leo] }
-  let(:interactor) { SetupGame.new(player_names) }
+  let(:interactor) { SetupGame.new(player_names: player_names) }
 
   subject(:call) { game.handle(interactor) }
 
