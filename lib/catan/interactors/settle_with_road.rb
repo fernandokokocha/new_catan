@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SettleWithRoad < Interactor
-  GameNotInitialized = Class.new(StandardError)
-
   def initialize(settlement_spot:, road_extension_spot:)
     @settlement_spot = settlement_spot
     @road_extension_spot = road_extension_spot
@@ -26,7 +24,7 @@ class SettleWithRoad < Interactor
   private
 
   def raise_uninitialized
-    raise GameNotInitialized
+    raise IllegalOperation, 'Game not initialized'
   end
 
   def raise_spot_already_settled(spot_index)

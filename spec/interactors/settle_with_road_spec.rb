@@ -11,8 +11,12 @@ describe SettleWithRoad do
   subject(:call) { game.handle(interactor) }
 
   context 'on not setup game' do
-    it 'raises error' do
-      expect { call }.to raise_error(SettleWithRoad::GameNotInitialized)
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Game not initialized')
     end
   end
 

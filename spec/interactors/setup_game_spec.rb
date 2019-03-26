@@ -7,10 +7,6 @@ describe SetupGame do
 
   subject(:call) { game.handle(interactor) }
 
-  it 'can be invoked' do
-    expect { call }.to_not raise_error
-  end
-
   it 'returns success' do
     expect(call.success?).to be(true)
   end
@@ -34,8 +30,12 @@ describe SetupGame do
   context 'invoked second time' do
     before(:each) { game.handle(interactor) }
 
-    it 'raises error' do
-      expect { call }.to raise_error(SetupGame::GameAlreadyInitialized)
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Game already initialized')
     end
   end
 end
