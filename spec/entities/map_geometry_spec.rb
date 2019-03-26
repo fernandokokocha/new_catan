@@ -7,7 +7,7 @@ describe MapGeometry do
     end
 
     MapGeometry.bordering_spot_indexes_for(spot_index).each do |bordering_spot_index|
-      it "Spor \##{spot_index} borders spot \##{bordering_spot_index} and vice versa" do
+      it "Spot \##{spot_index} borders spot \##{bordering_spot_index} and vice versa" do
         expect(MapGeometry.bordering_spot_indexes_for(bordering_spot_index)).to include(spot_index)
       end
     end
