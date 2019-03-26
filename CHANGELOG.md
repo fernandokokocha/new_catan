@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- Color attribute to players
 
 ### Changed
 - ...

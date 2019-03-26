@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class SetupGame < Interactor
-  def initialize(player_names:)
-    @player_names = player_names
+  def initialize(players:)
+    @players = players
   end
 
   def validate(state)
@@ -11,7 +11,7 @@ class SetupGame < Interactor
 
   def mutate(state)
     state.setup = true
-    state.players = @player_names.map { |name| Player.new(name: name) }
+    state.players = @players.map { |player| Player.new(name: player.fetch(:name), color: player.fetch(:color)) }
   end
 
   def raise_already_initialized

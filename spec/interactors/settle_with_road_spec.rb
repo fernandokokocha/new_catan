@@ -23,7 +23,7 @@ describe SettleWithRoad do
   end
 
   context 'on clear state' do
-    before(:each) { game.handle(SetupGame.new(player_names: %w[Bartek Leo])) }
+    before(:each) { game.handle(@setup_game_interactor) }
 
     it_behaves_like 'mutating interaction'
 
@@ -54,7 +54,7 @@ describe SettleWithRoad do
 
   context 'spot is already taken' do
     before(:each) do
-      game.handle(SetupGame.new(player_names: %w[Bartek Leo]))
+      game.handle(@setup_game_interactor)
       game.handle(SettleWithRoad.new(settlement_spot: spot_index, road_extension_spot: 6))
     end
 
@@ -73,7 +73,7 @@ describe SettleWithRoad do
     let(:bordering_spot) { 6 }
 
     before(:each) do
-      game.handle(SetupGame.new(player_names: %w[Bartek Leo]))
+      game.handle(@setup_game_interactor)
       game.handle(SettleWithRoad.new(settlement_spot: bordering_spot, road_extension_spot: 5))
     end
 

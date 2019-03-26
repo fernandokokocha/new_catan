@@ -2,12 +2,15 @@
 
 describe SetupGame do
   let(:game) { Game.new }
-  let(:player_names) { %w[Bartek Leo] }
-  let(:interactor) { SetupGame.new(player_names: player_names) }
+  let(:player_1) { { name: 'Bartek', color: :orange } }
+  let(:player_2) { { name: 'Leo', color: :blue } }
+  let(:interactor) do
+    SetupGame.new(players: [player_1, player_2])
+  end
 
   subject(:call) { game.handle(interactor) }
 
-  context 'invoked first time' do
+  context 'invoked with valid data' do
     it_behaves_like 'mutating interaction'
 
     it 'returns success' do
@@ -21,7 +24,9 @@ describe SetupGame do
 
     it 'sets up players' do
       call
-      expect(game.players).to eq([Player.new(name: 'Bartek'), Player.new(name: 'Leo')])
+      expect(game.players.length).to be(2)
+      expect(game.players[0]).to eq(Player.new(name: 'Bartek', color: :orange))
+      expect(game.players[1]).to eq(Player.new(name: 'Leo', color: :blue))
     end
   end
 
