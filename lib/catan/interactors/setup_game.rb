@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SetupGame
+class SetupGame < Interactor
   GameAlreadyInitialized = Class.new(StandardError)
 
   attr_reader :player_names
@@ -9,11 +9,12 @@ class SetupGame
     @player_names = player_names
   end
 
-  def invoke(state)
+  def validate(state)
     raise GameAlreadyInitialized if state.setup?
+  end
 
+  def mutate(state)
     state.setup
     state.setup_players(player_names)
-    state
   end
 end
