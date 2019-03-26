@@ -10,6 +10,15 @@ class State
     @roads = []
   end
 
+  def values
+    {
+      setup: @setup,
+      players: @players,
+      settlements: @settlements,
+      roads: @roads
+    }
+  end
+
   def setup?
     @setup
   end

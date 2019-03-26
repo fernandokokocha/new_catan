@@ -58,9 +58,12 @@ describe SettleWithRoad do
 
     it "doesn't change the state" do
       old = game.state
+      old_values = old.values
       call
       new = game.state
+      new_values = new.values
       expect(new).to be(old)
+      expect(new_values).to eq(old_values)
     end
   end
 
@@ -82,9 +85,12 @@ describe SettleWithRoad do
 
     it "doesn't change the state" do
       old = game.state
+      old_values = old.values
       call
       new = game.state
+      new_values = new.values
       expect(new).to be(old)
+      expect(new_values).to eq(old_values)
     end
   end
 end

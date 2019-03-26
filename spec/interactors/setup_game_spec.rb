@@ -32,8 +32,9 @@ describe SetupGame do
   end
 
   context 'invoked second time' do
+    before(:each) { game.handle(interactor) }
+
     it 'raises error' do
-      game.handle(interactor)
       expect { call }.to raise_error(SetupGame::GameAlreadyInitialized)
     end
   end
