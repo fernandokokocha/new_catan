@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative File.join('..', 'shared', 'interactions.rb')
+
 describe SettleWithRoad do
   let(:game) { Game.new }
   let(:spot_index) { 1 }
@@ -56,15 +58,7 @@ describe SettleWithRoad do
       expect(call.message).to eq("Spot \##{spot_index}: is already settled")
     end
 
-    it "doesn't change the state" do
-      old = game.state
-      old_values = old.values
-      call
-      new = game.state
-      new_values = new.values
-      expect(new).to be(old)
-      expect(new_values).to eq(old_values)
-    end
+    it_behaves_like 'not mutating interaction'
   end
 
   context 'bordering spot is taken' do
@@ -83,14 +77,6 @@ describe SettleWithRoad do
       expect(call.message).to eq("Spot \##{spot_index}: bordering spot \##{bordering_spot} is already settled")
     end
 
-    it "doesn't change the state" do
-      old = game.state
-      old_values = old.values
-      call
-      new = game.state
-      new_values = new.values
-      expect(new).to be(old)
-      expect(new_values).to eq(old_values)
-    end
+    it_behaves_like 'not mutating interaction'
   end
 end
