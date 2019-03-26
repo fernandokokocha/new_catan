@@ -11,6 +11,8 @@ describe SettleWithRoad do
   subject(:call) { game.handle(interactor) }
 
   context 'on not setup game' do
+    it_behaves_like 'not mutating interaction'
+
     it 'returns failure' do
       expect(call.success?).to be(false)
     end
@@ -22,6 +24,8 @@ describe SettleWithRoad do
 
   context 'on clear state' do
     before(:each) { game.handle(SetupGame.new(player_names: %w[Bartek Leo])) }
+
+    it_behaves_like 'mutating interaction'
 
     it 'returns success' do
       expect(call.success?).to be(true)
@@ -54,6 +58,8 @@ describe SettleWithRoad do
       game.handle(SettleWithRoad.new(settlement_spot: spot_index, road_extension_spot: 6))
     end
 
+    it_behaves_like 'not mutating interaction'
+
     it 'returns failure' do
       expect(call.success?).to be(false)
     end
@@ -61,8 +67,6 @@ describe SettleWithRoad do
     it 'returns descriptive message' do
       expect(call.message).to eq("Spot \##{spot_index}: is already settled")
     end
-
-    it_behaves_like 'not mutating interaction'
   end
 
   context 'bordering spot is taken' do
@@ -73,6 +77,8 @@ describe SettleWithRoad do
       game.handle(SettleWithRoad.new(settlement_spot: bordering_spot, road_extension_spot: 5))
     end
 
+    it_behaves_like 'not mutating interaction'
+
     it 'returns failure' do
       expect(call.success?).to be(false)
     end
@@ -80,7 +86,5 @@ describe SettleWithRoad do
     it 'returns descriptive message' do
       expect(call.message).to eq("Spot \##{spot_index}: bordering spot \##{bordering_spot} is already settled")
     end
-
-    it_behaves_like 'not mutating interaction'
   end
 end

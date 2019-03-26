@@ -15,3 +15,12 @@ RSpec.shared_examples 'not mutating interaction' do
     expect(new_values).to eq(old_values)
   end
 end
+
+RSpec.shared_examples 'mutating interaction' do
+  it 'changes the state object' do
+    old = game.state
+    call
+    new = game.state
+    expect(new).to_not be(old)
+  end
+end

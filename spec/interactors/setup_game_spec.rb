@@ -7,28 +7,28 @@ describe SetupGame do
 
   subject(:call) { game.handle(interactor) }
 
-  it 'returns success' do
-    expect(call.success?).to be(true)
-  end
+  context 'invoked first time' do
+    it_behaves_like 'mutating interaction'
 
-  it 'sets up game' do
-    call
-    expect(game.setup?).to be(true)
-  end
+    it 'returns success' do
+      expect(call.success?).to be(true)
+    end
 
-  it 'sets up players' do
-    call
-    expect(game.players).to eq([{ name: 'Bartek' }, { name: 'Leo' }])
-  end
+    it 'sets up game' do
+      call
+      expect(game.setup?).to be(true)
+    end
 
-  it 'is immutable' do
-    old_state = game.state
-    call
-    expect(game.state).to_not be(old_state)
+    it 'sets up players' do
+      call
+      expect(game.players).to eq([{ name: 'Bartek' }, { name: 'Leo' }])
+    end
   end
 
   context 'invoked second time' do
     before(:each) { game.handle(interactor) }
+
+    it_behaves_like 'not mutating interaction'
 
     it 'returns failure' do
       expect(call.success?).to be(false)
