@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 
-class SettleWithRoad
+class SettleWithRoad < Interactor
   GameNotInitialized = Class.new(StandardError)
-  IllegalOperation = Class.new(StandardError)
 
   def initialize(settlement_spot, road_extension)
     @settlement_spot = settlement_spot
     @road_extension = road_extension
-  end
-
-  def invoke(state)
-    validate(state)
-
-    state.settle(Settlement.new(spot_index: @settlement_spot))
-    state.build_road(Road.new(from: @settlement_spot, to: @road_extension))
-    state
   end
 
   def validate(state)
@@ -27,17 +18,22 @@ class SettleWithRoad
     end
   end
 
+  def mutate(state)
+    state.settle(Settlement.new(spot_index: @settlement_spot))
+    state.build_road(Road.new(from: @settlement_spot, to: @road_extension))
+  end
+
   def raise_uninitialized
     raise GameNotInitialized
   end
 
   def raise_spot_already_settled(spot_index)
     message = "Spot \##{spot_index}: is already settled"
-    raise IllegalOperation, message
+    raise Interactor::IllegalOperation, message
   end
 
   def raise_bordering_spot_already_settled(spot_index, bordering_spot_index)
     message = "Spot \##{spot_index}: bordering spot \##{bordering_spot_index} is already settled"
-    raise IllegalOperation, message
+    raise Interactor::IllegalOperation, message
   end
 end
