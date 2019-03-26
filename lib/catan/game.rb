@@ -12,9 +12,7 @@ class Game
   end
 
   def handle(interactor)
-    result = interactor.invoke(@state.clone)
-
-    @state = result
+    @state = interactor.invoke(@state.clone)
     InteractionSuccess.new
   rescue Interactor::IllegalOperation => exeception
     InteractionFailure.new(message: exeception.message)
