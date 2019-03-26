@@ -5,6 +5,11 @@ class Settlement
 
   def initialize(spot_index:)
     @spot_index = spot_index
+    raise ArgumentError unless valid?
+  end
+
+  def valid?
+    MapGeometry.possible_spot_indexes.include?(@spot_index)
   end
 
   def ==(other)

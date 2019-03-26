@@ -96,6 +96,10 @@ class MapGeometry
     [7, 53, 25]
   ].freeze
 
+  def self.possible_spot_indexes
+    (1..54)
+  end
+
   def self.bordering_spot_indexes_for(spot_index)
     BORDERING_SPOTS.fetch(spot_index)
   end

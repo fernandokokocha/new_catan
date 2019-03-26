@@ -3,8 +3,6 @@
 class SetupGame < Interactor
   GameAlreadyInitialized = Class.new(StandardError)
 
-  attr_reader :player_names
-
   def initialize(player_names)
     @player_names = player_names
   end
@@ -15,6 +13,6 @@ class SetupGame < Interactor
 
   def mutate(state)
     state.setup
-    state.setup_players(player_names)
+    state.setup_players(@player_names)
   end
 end

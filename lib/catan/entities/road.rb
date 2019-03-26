@@ -6,6 +6,12 @@ class Road
   def initialize(from:, to:)
     @from = from
     @to = to
+    raise ArgumentError unless valid?
+  end
+
+  def valid?
+    valid_indexes = MapGeometry.possible_spot_indexes
+    valid_indexes.include?(@from) && valid_indexes.include?(@to)
   end
 
   def ==(other)
