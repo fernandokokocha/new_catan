@@ -15,7 +15,7 @@ class Game
     result = interactor.invoke(@state.clone)
 
     @state = result
-    true
+    InteractionSuccess.new
   rescue Interactor::IllegalOperation => exeception
     InteractionFailure.new(message: exeception.message)
   end

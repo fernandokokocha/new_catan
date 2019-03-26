@@ -11,8 +11,8 @@ describe SetupGame do
     expect { call }.to_not raise_error
   end
 
-  it 'returns true' do
-    expect(call).to be(true)
+  it 'returns success' do
+    expect(call.success?).to be(true)
   end
 
   it 'sets up game' do

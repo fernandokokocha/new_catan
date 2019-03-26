@@ -17,8 +17,8 @@ describe SettleWithRoad do
   context 'on clear state' do
     before(:each) { game.handle(SetupGame.new(%w[Bartek Leo])) }
 
-    it 'returns true' do
-      expect(call).to be(true)
+    it 'returns success' do
+      expect(call.success?).to be(true)
     end
 
     it 'settles one spot' do
