@@ -4,3 +4,6 @@ detectors:
   FeatureEnvy:
     exclude:
       - 'SetupGame'
+  Attribute:
+    exclude:
+      - 'State'

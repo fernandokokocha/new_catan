@@ -12,7 +12,7 @@ class SetupGame < Interactor
   end
 
   def mutate(state)
-    state.setup
-    state.setup_players(@player_names)
+    state.setup = true
+    state.players = @player_names.map { |name| { name: name } }
   end
 end
