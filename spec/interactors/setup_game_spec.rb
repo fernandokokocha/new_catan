@@ -21,7 +21,7 @@ describe SetupGame do
 
     it 'sets up players' do
       call
-      expect(game.players).to eq([{ name: 'Bartek' }, { name: 'Leo' }])
+      expect(game.players).to eq([Player.new(name: 'Bartek'), Player.new(name: 'Leo')])
     end
   end
 

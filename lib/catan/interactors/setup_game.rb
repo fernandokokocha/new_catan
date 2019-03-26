@@ -11,7 +11,7 @@ class SetupGame < Interactor
 
   def mutate(state)
     state.setup = true
-    state.players = @player_names.map { |name| { name: name } }
+    state.players = @player_names.map { |name| Player.new(name: name) }
   end
 
   def raise_already_initialized
