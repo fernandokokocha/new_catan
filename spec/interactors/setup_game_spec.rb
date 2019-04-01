@@ -57,6 +57,20 @@ describe SetupGame do
     end
   end
 
+  context 'duplicated player names' do
+    let(:player_2) { { name: player_1[:name], color: :blue } }
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Player names include duplication: Bartek')
+    end
+  end
+
   context 'too few players' do
     let(:players) { [player_1] }
 
@@ -71,7 +85,17 @@ describe SetupGame do
     end
   end
 
-  context 'too many players'
+  # context 'too many players' do
+  #   let(:players) do
+  #     [
+  #       player_1,
+  #       player_2,
+  #       Player.new(name: 'Carles', color: :orange),
+  #       Player.new(name: 'Gerard', color: :orange),
+  #       Player.new(name: 'Andres', color: :orange)
+  #     ]
+  #   end
+  # end
 
   context 'invoked second time' do
     before(:each) { game.handle(interactor) }

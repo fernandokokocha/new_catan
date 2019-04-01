@@ -10,6 +10,10 @@ class SetupGame < Interactor
   def validate(state)
     raise_already_initialized if state.setup?
     raise_too_few_players if @players.count < MIN_PLAYERS_COUNT
+
+    player_names.detect do |player_name|
+      raise_player_names_duplication(player_name) if player_names.count(player_name) > 1
+    end
   end
 
   def mutate(state)
@@ -19,14 +23,16 @@ class SetupGame < Interactor
 
   def build_player(player_params)
     name = player_params.fetch(:name)
-    # raise_empty_name if name.empty?
-
     color = player_params.fetch(:color)
     Player.new(name: name, color: color)
   rescue Player::EmptyName
     raise_empty_name
   rescue Player::InvalidColor
     raise_invalid_color(name, color)
+  end
+
+  def player_names
+    @players.map { |player| player.fetch(:name) }
   end
 
   def raise_already_initialized
@@ -36,6 +42,10 @@ class SetupGame < Interactor
   def raise_too_few_players
     message = "Too few players: #{@players.count} instead of required at least #{MIN_PLAYERS_COUNT}"
     raise IllegalOperation, message
+  end
+
+  def raise_player_names_duplication(player_name)
+    raise IllegalOperation, "Player names include duplication: #{player_name}"
   end
 
   def raise_empty_name
