@@ -30,7 +30,7 @@ describe SetupGame do
   end
 
   context 'invalid color of player' do
-    let(:player_1) { { name: 'Bartek', color: :green } }
+    before(:each) { player_1[:color] = :green }
 
     it_behaves_like 'not mutating interaction'
 
@@ -44,7 +44,7 @@ describe SetupGame do
   end
 
   context 'invalid name of player' do
-    let(:player_1) { { name: '', color: :orange } }
+    before(:each) { player_1[:name] = '' }
 
     it_behaves_like 'not mutating interaction'
 
@@ -58,7 +58,7 @@ describe SetupGame do
   end
 
   context 'duplicated player names' do
-    let(:player_2) { { name: player_1[:name], color: :blue } }
+    before(:each) { player_2[:name] = player_1[:name] }
 
     it_behaves_like 'not mutating interaction'
 
