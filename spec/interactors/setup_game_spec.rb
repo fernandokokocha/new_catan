@@ -9,7 +9,7 @@ describe SetupGame do
 
   subject(:call) { game.handle(interactor) }
 
-  context 'invoked with valid data' do
+  context 'valid data' do
     it_behaves_like 'mutating interaction'
 
     it 'returns success' do
@@ -29,7 +29,7 @@ describe SetupGame do
     end
   end
 
-  context 'invoked with too many players' do
+  context 'too few players' do
     let(:players) { [player_1] }
 
     it_behaves_like 'not mutating interaction'
@@ -42,6 +42,22 @@ describe SetupGame do
       expect(call.message).to eq('Too few players: 1 instead of required at least 2')
     end
   end
+
+  context 'invalid color of player' do
+    let(:player_1) { { name: 'Bartek', color: :green } }
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Invalid player color: green of player Bartek')
+    end
+  end
+
+  context 'too many players'
 
   context 'invoked second time' do
     before(:each) { game.handle(interactor) }

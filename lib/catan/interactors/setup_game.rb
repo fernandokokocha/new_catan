@@ -14,7 +14,15 @@ class SetupGame < Interactor
 
   def mutate(state)
     state.setup = true
-    state.players = @players.map { |player| Player.new(name: player.fetch(:name), color: player.fetch(:color)) }
+    state.players = @players.map { |player| build_player(player) }
+  end
+
+  def build_player(player_params)
+    name = player_params.fetch(:name)
+    color = player_params.fetch(:color)
+    Player.new(name: name, color: color)
+  rescue ArgumentError
+    raise_invalid_color(name, color)
   end
 
   def raise_already_initialized
@@ -24,5 +32,9 @@ class SetupGame < Interactor
   def raise_too_few_players
     message = "Too few players: #{@players.count} instead of required at least #{MIN_PLAYERS_COUNT}"
     raise IllegalOperation, message
+  end
+
+  def raise_invalid_color(name, color)
+    raise IllegalOperation, "Invalid player color: #{color} of player #{name}"
   end
 end

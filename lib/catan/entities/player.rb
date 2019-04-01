@@ -6,6 +6,11 @@ class Player
   def initialize(name:, color:)
     @name = name
     @color = color
+    raise ArgumentError unless valid?
+  end
+
+  def valid?
+    %i[orange red white blue].include?(@color)
   end
 
   def ==(other)
