@@ -29,20 +29,6 @@ describe SetupGame do
     end
   end
 
-  context 'too few players' do
-    let(:players) { [player_1] }
-
-    it_behaves_like 'not mutating interaction'
-
-    it 'returns failure' do
-      expect(call.success?).to be(false)
-    end
-
-    it 'returns descriptive message' do
-      expect(call.message).to eq('Too few players: 1 instead of required at least 2')
-    end
-  end
-
   context 'invalid color of player' do
     let(:player_1) { { name: 'Bartek', color: :green } }
 
@@ -54,6 +40,34 @@ describe SetupGame do
 
     it 'returns descriptive message' do
       expect(call.message).to eq('Invalid player color: green of player Bartek')
+    end
+  end
+
+  context 'invalid name of player' do
+    let(:player_1) { { name: '', color: :orange } }
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Players include empty name')
+    end
+  end
+
+  context 'too few players' do
+    let(:players) { [player_1] }
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Too few players: 1 instead of required at least 2')
     end
   end
 

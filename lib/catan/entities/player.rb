@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
 class Player
+  EmptyName = Class.new(ArgumentError)
+  InvalidColor = Class.new(ArgumentError)
+
   attr_reader :name, :color
 
   def initialize(name:, color:)
     @name = name
     @color = color
-    raise ArgumentError, 'Invalid player params' unless valid?
+    raise EmptyName unless name_valid?
+    raise InvalidColor unless color_valid?
   end
 
-  def valid?
+  def name_valid?
+    !@name.empty?
+  end
+
+  def color_valid?
     %i[orange red white blue].include?(@color)
   end
 
