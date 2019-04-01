@@ -12,7 +12,7 @@ Continuation of [Catan v1](https://github.com/fernandokokocha/catan)
 
 ## Requirements
 
-* Ruby 2.4.1
+* Ruby 2.6.2
 
 ## Setup
 
@@ -24,7 +24,7 @@ Overcommit can't trigger mutant. Please don't commit any code that doesn't pass 
 
 To run:
 
-`bundle exec mutant --use rspec 'Catan'`
+`bundle exec mutant --use rspec 'SetupGame'`
 
 The last argument is a pattern (could contain a '*' wildcard) for names (class and methods) to mutate.
 

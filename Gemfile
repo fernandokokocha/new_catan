@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+ruby '2.6.2'
 
 group :development do
   gem 'mutant-rspec',   '~> 0.8.24'
