@@ -4,9 +4,8 @@ describe SetupGame do
   let(:game) { Game.new }
   let(:player_1) { { name: 'Bartek', color: :orange } }
   let(:player_2) { { name: 'Leo', color: :blue } }
-  let(:interactor) do
-    SetupGame.new(players: [player_1, player_2])
-  end
+  let(:players) { [player_1, player_2] }
+  let(:interactor) { SetupGame.new(players: players) }
 
   subject(:call) { game.handle(interactor) }
 
@@ -27,6 +26,20 @@ describe SetupGame do
       expect(game.players.length).to be(2)
       expect(game.players[0]).to eq(Player.new(name: 'Bartek', color: :orange))
       expect(game.players[1]).to eq(Player.new(name: 'Leo', color: :blue))
+    end
+  end
+
+  context 'invoked with too many players' do
+    let(:players) { [player_1] }
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Too few players: 1 instead of required at least 2')
     end
   end
 
