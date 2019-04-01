@@ -23,9 +23,46 @@ describe SetupGame do
 
     it 'sets up players' do
       call
-      expect(game.players.length).to be(2)
-      expect(game.players[0]).to eq(Player.new(name: 'Bartek', color: :orange))
-      expect(game.players[1]).to eq(Player.new(name: 'Leo', color: :blue))
+      expect(game.players).to eq(
+        [
+          Player.new(name: 'Bartek', color: :orange),
+          Player.new(name: 'Leo', color: :blue)
+        ]
+      )
+    end
+  end
+
+  context 'valid data - 4 players' do
+    let(:players) do
+      [
+        player_1,
+        player_2,
+        { name: 'Carles', color: :white },
+        { name: 'Gerard', color: :red }
+      ]
+    end
+
+    it_behaves_like 'mutating interaction'
+
+    it 'returns success' do
+      expect(call.success?).to be(true)
+    end
+
+    it 'sets up game' do
+      call
+      expect(game.setup?).to be(true)
+    end
+
+    it 'sets up players' do
+      call
+      expect(game.players).to eq(
+        [
+          Player.new(name: 'Bartek', color: :orange),
+          Player.new(name: 'Leo', color: :blue),
+          Player.new(name: 'Carles', color: :white),
+          Player.new(name: 'Gerard', color: :red)
+        ]
+      )
     end
   end
 
@@ -99,17 +136,27 @@ describe SetupGame do
     end
   end
 
-  # context 'too many players' do
-  #   let(:players) do
-  #     [
-  #       player_1,
-  #       player_2,
-  #       Player.new(name: 'Carles', color: :orange),
-  #       Player.new(name: 'Gerard', color: :orange),
-  #       Player.new(name: 'Andres', color: :orange)
-  #     ]
-  #   end
-  # end
+  context 'too many players' do
+    let(:players) do
+      [
+        player_1,
+        player_2,
+        { name: 'Carles', color: :white },
+        { name: 'Gerard', color: :red },
+        { name: 'Andres', color: :orange }
+      ]
+    end
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Too many players: 5 instead of required at most 4')
+    end
+  end
 
   context 'invoked second time' do
     before(:each) { game.handle(interactor) }

@@ -2,6 +2,7 @@
 
 class SetupGame < Interactor
   MIN_PLAYERS_COUNT = 2
+  MAX_PLAYERS_COUNT = 4
 
   def initialize(players:)
     @players = players
@@ -9,18 +10,12 @@ class SetupGame < Interactor
 
   def validate(state)
     raise_already_initialized if state.setup?
-    raise_too_few_players if @players.count < MIN_PLAYERS_COUNT
+    raise_too_few_players if players_count < MIN_PLAYERS_COUNT
+    raise_too_many_players if players_count > MAX_PLAYERS_COUNT
 
-    validate_names_uniqueness
-    validate_colors_uniqueness
-  end
-
-  def validate_names_uniqueness
     player_names_dup = ArrayUtils.find_duplication(player_names)
     raise_player_names_duplication(player_names_dup) if player_names_dup
-  end
 
-  def validate_colors_uniqueness
     player_colors_dup = ArrayUtils.find_duplication(player_colors)
     raise_player_colors_duplication(player_colors_dup) if player_colors_dup
   end
@@ -40,6 +35,10 @@ class SetupGame < Interactor
     raise_invalid_color(name, color)
   end
 
+  def players_count
+    @players.count
+  end
+
   def player_names
     @players.map { |player| player.fetch(:name) }
   end
@@ -54,6 +53,11 @@ class SetupGame < Interactor
 
   def raise_too_few_players
     message = "Too few players: #{@players.count} instead of required at least #{MIN_PLAYERS_COUNT}"
+    raise IllegalOperation, message
+  end
+
+  def raise_too_many_players
+    message = "Too many players: #{@players.count} instead of required at most #{MAX_PLAYERS_COUNT}"
     raise IllegalOperation, message
   end
 

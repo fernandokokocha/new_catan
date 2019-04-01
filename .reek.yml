@@ -3,7 +3,10 @@ detectors:
     enabled: false
   FeatureEnvy:
     exclude:
-      - 'SetupGame'
+      - 'SetupGame' # interactors deal on stateful object - state, therefore could be feature envies
   Attribute:
     exclude:
-      - 'State'
+      - 'State' # State is to be operated on
+  TooManyStatements:
+    exclude:
+      - 'SetupGame#validate' # validation is about raising errors if something is invalid
