@@ -6,7 +6,7 @@ class Player
   def initialize(name:, color:)
     @name = name
     @color = color
-    raise ArgumentError unless valid?
+    raise ArgumentError, 'Invalid player params' unless valid?
   end
 
   def valid?

@@ -6,7 +6,7 @@ class Road
   def initialize(from:, to:)
     @from = from
     @to = to
-    raise ArgumentError unless valid?
+    raise ArgumentError, 'Invalid road params' unless valid?
   end
 
   def valid?

@@ -5,7 +5,7 @@ class Settlement
 
   def initialize(spot_index:)
     @spot_index = spot_index
-    raise ArgumentError unless valid?
+    raise ArgumentError, 'Invalid settlement params' unless valid?
   end
 
   def valid?
