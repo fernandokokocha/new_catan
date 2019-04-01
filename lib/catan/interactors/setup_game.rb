@@ -4,8 +4,8 @@ class SetupGame < Interactor
   MIN_PLAYERS_COUNT = 2
   MAX_PLAYERS_COUNT = 4
 
-  def initialize(players:)
-    @players = players
+  def initialize(players_params:)
+    @players_params = players_params
   end
 
   def validate(state)
@@ -22,7 +22,7 @@ class SetupGame < Interactor
 
   def mutate(state)
     state.setup = true
-    state.players = @players.map { |player| build_player(player) }
+    state.players = @players_params.map { |player_params| build_player(player_params) }
   end
 
   def build_player(player_params)
@@ -36,15 +36,15 @@ class SetupGame < Interactor
   end
 
   def players_count
-    @players.count
+    @players_params.count
   end
 
   def player_names
-    @players.map { |player| player.fetch(:name) }
+    @players_params.map { |player| player.fetch(:name) }
   end
 
   def player_colors
-    @players.map { |player| player.fetch(:color) }
+    @players_params.map { |player| player.fetch(:color) }
   end
 
   def raise_already_initialized
@@ -52,12 +52,12 @@ class SetupGame < Interactor
   end
 
   def raise_too_few_players
-    message = "Too few players: #{@players.count} instead of required at least #{MIN_PLAYERS_COUNT}"
+    message = "Too few players: #{players_count} instead of required at least #{MIN_PLAYERS_COUNT}"
     raise IllegalOperation, message
   end
 
   def raise_too_many_players
-    message = "Too many players: #{@players.count} instead of required at most #{MAX_PLAYERS_COUNT}"
+    message = "Too many players: #{players_count} instead of required at most #{MAX_PLAYERS_COUNT}"
     raise IllegalOperation, message
   end
 

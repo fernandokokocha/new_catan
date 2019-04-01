@@ -2,10 +2,10 @@
 
 describe SetupGame do
   let(:game) { Game.new }
-  let(:player_1) { { name: 'Bartek', color: :orange } }
-  let(:player_2) { { name: 'Leo', color: :blue } }
-  let(:players) { [player_1, player_2] }
-  let(:interactor) { SetupGame.new(players: players) }
+  let(:player_params_1) { { name: 'Bartek', color: :orange } }
+  let(:player_params_2) { { name: 'Leo', color: :blue } }
+  let(:players_params) { [player_params_1, player_params_2] }
+  let(:interactor) { SetupGame.new(players_params: players_params) }
 
   subject(:call) { game.handle(interactor) }
 
@@ -33,10 +33,10 @@ describe SetupGame do
   end
 
   context 'valid data - 4 players' do
-    let(:players) do
+    let(:players_params) do
       [
-        player_1,
-        player_2,
+        player_params_1,
+        player_params_2,
         { name: 'Carles', color: :white },
         { name: 'Gerard', color: :red }
       ]
@@ -67,7 +67,7 @@ describe SetupGame do
   end
 
   context 'invalid color of player' do
-    before(:each) { player_1[:color] = :green }
+    before(:each) { player_params_1[:color] = :green }
 
     it_behaves_like 'not mutating interaction'
 
@@ -81,7 +81,7 @@ describe SetupGame do
   end
 
   context 'invalid name of player' do
-    before(:each) { player_1[:name] = '' }
+    before(:each) { player_params_1[:name] = '' }
 
     it_behaves_like 'not mutating interaction'
 
@@ -95,7 +95,7 @@ describe SetupGame do
   end
 
   context 'duplicated player names' do
-    before(:each) { player_2[:name] = player_1[:name] }
+    before(:each) { player_params_2[:name] = player_params_1[:name] }
 
     it_behaves_like 'not mutating interaction'
 
@@ -109,7 +109,7 @@ describe SetupGame do
   end
 
   context 'duplicated player colors' do
-    let(:player_2) { { name: 'Leo', color: player_1[:color] } }
+    let(:player_params_2) { { name: 'Leo', color: player_params_1[:color] } }
 
     it_behaves_like 'not mutating interaction'
 
@@ -123,7 +123,7 @@ describe SetupGame do
   end
 
   context 'too few players' do
-    let(:players) { [player_1] }
+    let(:players_params) { [player_params_1] }
 
     it_behaves_like 'not mutating interaction'
 
@@ -137,10 +137,10 @@ describe SetupGame do
   end
 
   context 'too many players' do
-    let(:players) do
+    let(:players_params) do
       [
-        player_1,
-        player_2,
+        player_params_1,
+        player_params_2,
         { name: 'Carles', color: :white },
         { name: 'Gerard', color: :red },
         { name: 'Andres', color: :orange }
