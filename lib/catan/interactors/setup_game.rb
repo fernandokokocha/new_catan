@@ -11,9 +11,18 @@ class SetupGame < Interactor
     raise_already_initialized if state.setup?
     raise_too_few_players if @players.count < MIN_PLAYERS_COUNT
 
-    player_names.detect do |player_name|
-      raise_player_names_duplication(player_name) if player_names.count(player_name) > 1
-    end
+    validate_names_uniqueness
+    validate_colors_uniqueness
+  end
+
+  def validate_names_uniqueness
+    player_names_dup = ArrayUtils.find_duplication(player_names)
+    raise_player_names_duplication(player_names_dup) if player_names_dup
+  end
+
+  def validate_colors_uniqueness
+    player_colors_dup = ArrayUtils.find_duplication(player_colors)
+    raise_player_colors_duplication(player_colors_dup) if player_colors_dup
   end
 
   def mutate(state)
@@ -35,6 +44,10 @@ class SetupGame < Interactor
     @players.map { |player| player.fetch(:name) }
   end
 
+  def player_colors
+    @players.map { |player| player.fetch(:color) }
+  end
+
   def raise_already_initialized
     raise IllegalOperation, 'Game already initialized'
   end
@@ -46,6 +59,10 @@ class SetupGame < Interactor
 
   def raise_player_names_duplication(player_name)
     raise IllegalOperation, "Player names include duplication: #{player_name}"
+  end
+
+  def raise_player_colors_duplication(player_color)
+    raise IllegalOperation, "Player colors include duplication: #{player_color}"
   end
 
   def raise_empty_name

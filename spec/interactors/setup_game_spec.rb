@@ -71,6 +71,20 @@ describe SetupGame do
     end
   end
 
+  context 'duplicated player colors' do
+    let(:player_2) { { name: 'Leo', color: player_1[:color] } }
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Player colors include duplication: orange')
+    end
+  end
+
   context 'too few players' do
     let(:players) { [player_1] }
 
