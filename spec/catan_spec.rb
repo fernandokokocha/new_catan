@@ -12,6 +12,10 @@ describe Game do
       expect(game.players).to eq([])
     end
 
+    it 'has no current players' do
+      expect(game.current_player).to eq(nil)
+    end
+
     it 'has no settlements' do
       expect(game.settlements).to eq([])
     end

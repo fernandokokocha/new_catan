@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class State
-  attr_accessor :setup, :players, :settlements, :roads
+  attr_accessor :setup, :players, :current_player, :settlements, :roads
 
   def initialize
     @setup = false
     @players = []
+    @current_player = nil
     @settlements = []
     @roads = []
   end

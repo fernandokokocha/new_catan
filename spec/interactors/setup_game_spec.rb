@@ -30,6 +30,11 @@ describe SetupGame do
         ]
       )
     end
+
+    it 'sets up current player' do
+      call
+      expect(game.current_player).to eq(Player.new(name: 'Bartek', color: :orange))
+    end
   end
 
   context 'when valid data - 4 players' do
@@ -63,6 +68,11 @@ describe SetupGame do
           Player.new(name: 'Gerard', color: :red)
         ]
       )
+    end
+
+    it 'sets up current player' do
+      call
+      expect(game.current_player).to eq(Player.new(name: 'Bartek', color: :orange))
     end
   end
 

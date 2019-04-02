@@ -7,6 +7,9 @@ detectors:
   Attribute:
     exclude:
       - 'State' # State is to be operated on
+  TooManyInstanceVariables:
+      exclude:
+      - 'State' # State consists on many
   TooManyStatements:
     exclude:
       - 'SetupGame#validate' # validation is about raising errors if something is invalid

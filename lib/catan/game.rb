@@ -5,7 +5,7 @@ require 'forwardable'
 class Game
   extend Forwardable
   attr_reader :state
-  def_delegators :state, :setup?, :players, :settlements, :roads
+  def_delegators :state, :setup?, :players, :current_player, :settlements, :roads
 
   def initialize
     @state = State.new
