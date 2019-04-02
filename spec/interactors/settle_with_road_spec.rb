@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative File.join('..', 'shared', 'interactions.rb')
-
 describe SettleWithRoad do
   let(:game) { Game.new }
   let(:spot_index) { 1 }

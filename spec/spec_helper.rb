@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../lib/catan.rb'
+require_relative File.join('..', 'lib', 'catan.rb')
+require_relative File.join('.', 'shared', 'interactions.rb')
 
 RSpec.configure do |config|
   config.before(:example) do
