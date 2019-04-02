@@ -25,6 +25,6 @@ class State
   end
 
   def settled?(spot_index)
-    @settlements.include?(Settlement.new(spot_index: spot_index))
+    @settlements.detect { |settlement| settlement.spot_index == spot_index }
   end
 end

@@ -35,8 +35,9 @@ describe SettleWithRoad do
     end
 
     it 'settles correct spot' do
+      player = game.current_player
       call
-      expect(game.settlements.first).to eq(Settlement.new(spot_index: 1))
+      expect(game.settlements.first).to eq(Settlement.new(spot_index: 1, owner: player))
     end
 
     it 'builds one road' do
@@ -45,8 +46,9 @@ describe SettleWithRoad do
     end
 
     it 'builds correct road' do
+      player = game.current_player
       call
-      expect(game.roads.first).to eq(Road.new(from: 1, to: 2))
+      expect(game.roads.first).to eq(Road.new(from: 1, to: 2, owner: player))
     end
   end
 

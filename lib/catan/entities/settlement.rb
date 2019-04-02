@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Settlement
-  attr_reader :spot_index
+  attr_reader :spot_index, :owner
 
-  def initialize(spot_index:)
+  def initialize(spot_index:, owner:)
     @spot_index = spot_index
+    @owner = owner
     raise ArgumentError, 'Invalid settlement params' unless valid?
   end
 
@@ -13,6 +14,6 @@ class Settlement
   end
 
   def ==(other)
-    (other.class == self.class) && (other.spot_index == @spot_index)
+    (other.class == self.class) && (other.spot_index == @spot_index) && (other.owner == @owner)
   end
 end

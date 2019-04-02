@@ -17,8 +17,9 @@ class SettleWithRoad < Interactor
   end
 
   def mutate(state)
-    state.settlements << Settlement.new(spot_index: @settlement_spot)
-    state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot)
+    current_player = state.current_player
+    state.settlements << Settlement.new(spot_index: @settlement_spot, owner: current_player)
+    state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: current_player)
   end
 
   private
