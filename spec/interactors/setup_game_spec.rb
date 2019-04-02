@@ -9,7 +9,7 @@ describe SetupGame do
 
   subject(:call) { game.handle(interactor) }
 
-  context 'valid data' do
+  context 'with valid data' do
     it_behaves_like 'mutating interaction'
 
     it 'returns success' do
@@ -32,7 +32,7 @@ describe SetupGame do
     end
   end
 
-  context 'valid data - 4 players' do
+  context 'when valid data - 4 players' do
     let(:players_params) do
       [
         player_params_1,
@@ -66,7 +66,7 @@ describe SetupGame do
     end
   end
 
-  context 'invalid color of player' do
+  context 'when invalid color of player' do
     before(:each) { player_params_1[:color] = :green }
 
     it_behaves_like 'not mutating interaction'
@@ -80,7 +80,7 @@ describe SetupGame do
     end
   end
 
-  context 'invalid name of player' do
+  context 'when invalid name of player' do
     before(:each) { player_params_1[:name] = '' }
 
     it_behaves_like 'not mutating interaction'
@@ -94,7 +94,7 @@ describe SetupGame do
     end
   end
 
-  context 'duplicated player names' do
+  context 'when duplicated player names' do
     before(:each) { player_params_2[:name] = player_params_1[:name] }
 
     it_behaves_like 'not mutating interaction'
@@ -108,7 +108,7 @@ describe SetupGame do
     end
   end
 
-  context 'duplicated player colors' do
+  context 'when duplicated player colors' do
     let(:player_params_2) { { name: 'Leo', color: player_params_1[:color] } }
 
     it_behaves_like 'not mutating interaction'
@@ -122,7 +122,7 @@ describe SetupGame do
     end
   end
 
-  context 'too few players' do
+  context 'when too few players' do
     let(:players_params) { [player_params_1] }
 
     it_behaves_like 'not mutating interaction'
@@ -136,7 +136,7 @@ describe SetupGame do
     end
   end
 
-  context 'too many players' do
+  context 'when too many players' do
     let(:players_params) do
       [
         player_params_1,
@@ -158,7 +158,7 @@ describe SetupGame do
     end
   end
 
-  context 'invoked second time' do
+  context 'when invoked second time' do
     before(:each) { game.handle(interactor) }
 
     it_behaves_like 'not mutating interaction'

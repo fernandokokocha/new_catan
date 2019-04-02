@@ -10,7 +10,7 @@ describe SettleWithRoad do
 
   subject(:call) { game.handle(interactor) }
 
-  context 'on not setup game' do
+  context 'when game not set up' do
     it_behaves_like 'not mutating interaction'
 
     it 'returns failure' do
@@ -22,7 +22,7 @@ describe SettleWithRoad do
     end
   end
 
-  context 'on clear state' do
+  context 'when game set up' do
     before(:each) { game.handle(@setup_game_interactor) }
 
     it_behaves_like 'mutating interaction'
@@ -52,7 +52,7 @@ describe SettleWithRoad do
     end
   end
 
-  context 'spot is already taken' do
+  context 'when spot is already taken' do
     before(:each) do
       game.handle(@setup_game_interactor)
       game.handle(SettleWithRoad.new(settlement_spot: spot_index, road_extension_spot: 6))
@@ -69,7 +69,7 @@ describe SettleWithRoad do
     end
   end
 
-  context 'bordering spot is taken' do
+  context 'when bordering spot is taken' do
     let(:bordering_spot) { 6 }
 
     before(:each) do

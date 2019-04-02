@@ -3,7 +3,7 @@
 describe Game do
   let(:game) { Game.new }
 
-  context 'initially' do
+  context 'when just created' do
     it 'is not setup' do
       expect(game.setup?).to be(false)
     end
