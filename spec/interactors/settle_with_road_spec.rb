@@ -8,19 +8,7 @@ describe SettleWithRoad do
 
   subject(:call) { game.handle(interactor) }
 
-  context 'when game not set up' do
-    it_behaves_like 'not mutating interaction'
-
-    it 'returns failure' do
-      expect(call.success?).to be(false)
-    end
-
-    it 'returns descriptive message' do
-      expect(call.message).to eq('Game not initialized')
-    end
-  end
-
-  context 'when game set up' do
+  context 'with valid data and state' do
     before(:each) { game.handle(@setup_game_interactor) }
 
     it_behaves_like 'mutating interaction'
@@ -49,6 +37,18 @@ describe SettleWithRoad do
       player = game.current_player
       call
       expect(game.roads.first).to eq(Road.new(from: 1, to: 2, owner: player))
+    end
+  end
+
+  context 'when game not set up' do
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Game not initialized')
     end
   end
 
