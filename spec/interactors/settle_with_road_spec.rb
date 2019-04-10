@@ -28,6 +28,20 @@ describe SettleWithRoad do
       expect(game.settlements.first).to eq(Settlement.new(spot_index: 1, owner: player))
     end
 
+    it 'adds resources to current player' do
+      current_player_name = game.current_player.name
+      call
+      previous_player = game.find_player_by_name(current_player_name)
+      expected = Resources.new(
+        brick: 2,
+        lumber: 1,
+        wool: 0,
+        grain: 0,
+        ore: 0
+      )
+      expect(previous_player.resources).to eq(expected)
+    end
+
     it 'builds one road' do
       call
       expect(game.roads.length).to eq(1)

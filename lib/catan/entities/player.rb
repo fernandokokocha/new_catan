@@ -4,11 +4,12 @@ class Player
   EmptyName = Class.new(ArgumentError)
   InvalidColor = Class.new(ArgumentError)
 
-  attr_reader :name, :color
+  attr_reader :name, :color, :resources
 
   def initialize(name:, color:)
     @name = name
     @color = color
+    @resources = Resources.create_empty_bank
     raise EmptyName unless name_valid?
     raise InvalidColor unless color_valid?
   end
@@ -22,6 +23,9 @@ class Player
   end
 
   def ==(other)
-    (other.class == self.class) && (other.name == @name) && (other.color == @color)
+    (other.class == self.class) &&
+      (other.name == @name) &&
+      (other.color == @color) &&
+      (other.resources == @resources)
   end
 end

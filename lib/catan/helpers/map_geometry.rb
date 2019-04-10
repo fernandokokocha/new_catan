@@ -96,11 +96,73 @@ class MapGeometry
     [7, 53, 25]
   ].freeze
 
+  BORDERING_TILES_FOR_SPOT = [
+    [],
+    [1, 2, 7],
+    [1, 2, 3],
+    [1, 3, 4],
+    [1, 4, 5],
+    [1, 5, 6],
+    [1, 6, 7],
+    [2, 8, 19],
+    [2, 8, 9],
+    [2, 3, 9],
+    [3, 9, 10],
+    [3, 10, 11],
+    [3, 4, 11],
+    [3, 11, 12],
+    [4, 12, 13],
+    [4, 5, 13],
+    [5, 13, 14],
+    [5, 14, 15],
+    [5, 6, 15],
+    [6, 15, 16],
+    [6, 16, 17],
+    [6, 7, 17],
+    [7, 17, 18],
+    [7, 18, 19],
+    [2, 7, 19],
+    [8],
+    [8],
+    [8, 9],
+    [9],
+    [9, 10],
+    [10],
+    [10],
+    [10, 11],
+    [11],
+    [11, 12],
+    [12],
+    [12],
+    [12, 13],
+    [13],
+    [13, 14],
+    [14],
+    [14],
+    [14, 15],
+    [15],
+    [15, 16],
+    [16],
+    [16],
+    [16, 17],
+    [17],
+    [17, 18],
+    [18],
+    [18],
+    [18, 19],
+    [19],
+    [8, 19]
+  ].freeze
+
   def self.possible_spot_indexes
     (1..54)
   end
 
   def self.bordering_spot_indexes_for(spot_index)
     BORDERING_SPOTS.fetch(spot_index)
+  end
+
+  def self.bordering_tile_indexes_for_spot(spot_index)
+    BORDERING_TILES_FOR_SPOT.fetch(spot_index)
   end
 end

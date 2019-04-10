@@ -19,7 +19,15 @@ class SettleWithRoad < Interactor
   def mutate(state)
     current_player = state.current_player
     state.settlements << Settlement.new(spot_index: @settlement_spot, owner: current_player)
+    mutate_gain_resources(state)
     state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: current_player)
+  end
+
+  def mutate_gain_resources(state)
+    MapGeometry
+      .bordering_tile_indexes_for_spot(@settlement_spot)
+      .map { |tile_index| ArrayUtils.find_by_attribute(state.tiles, :index, tile_index) }
+      .each { |tile| state.current_player.resources.add_one(tile.resource) }
   end
 
   private

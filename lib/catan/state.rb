@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class State
-  attr_accessor :setup, :players, :current_player, :settlements, :roads
+  attr_accessor :setup, :players, :current_player, :settlements, :roads, :tiles
 
   def initialize
     @setup = false
@@ -9,6 +9,7 @@ class State
     @current_player = nil
     @settlements = []
     @roads = []
+    @tiles = TileInitializer.basic_tiles
   end
 
   def values

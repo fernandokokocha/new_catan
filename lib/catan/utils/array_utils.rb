@@ -6,4 +6,8 @@ module ArrayUtils
       array.count(item) > 1
     end
   end
+
+  def self.find_by_attribute(array, attribute, value)
+    array.detect { |item| item.send(attribute) == value }
+  end
 end

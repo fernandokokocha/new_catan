@@ -17,4 +17,8 @@ class Game
   rescue Interactor::IllegalOperation => exeception
     InteractionFailure.new(message: exeception.message)
   end
+
+  def find_player_by_name(player_name)
+    state.players.detect { |player| player.name == player_name }
+  end
 end
