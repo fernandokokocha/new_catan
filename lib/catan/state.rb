@@ -16,8 +16,10 @@ class State
     {
       setup: @setup,
       players: @players,
+      current_player: @current_player,
       settlements: @settlements,
-      roads: @roads
+      roads: @roads,
+      tiles: @tiles
     }
   end
 
