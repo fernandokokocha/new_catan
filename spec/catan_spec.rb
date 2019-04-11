@@ -23,5 +23,9 @@ describe Game do
     it 'has no roads' do
       expect(game.roads).to eq([])
     end
+
+    it 'has 19 tiles' do
+      expect(game.tiles.length).to be(18)
+    end
   end
 end
