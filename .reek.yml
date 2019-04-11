@@ -21,7 +21,7 @@ detectors:
       - 'State#initialize' # state contains many attributes which need to be initialized
   DuplicateMethodCall:
     exclude:
-      - 'EndTurn#mutate' # it reads better with duplications
+      - 'EndTurn' # it reads better with duplications
   UtilityFunction:
     exclude:
-      - 'EndTurn#mutate' # EndTurn interactor is stateless
+      - 'EndTurn' # EndTurn interactor is stateless
