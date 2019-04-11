@@ -27,5 +27,9 @@ describe Game do
     it 'has 19 tiles' do
       expect(game.tiles.length).to be(18)
     end
+
+    it 'has first turn' do
+      expect(game.turn).to be(1)
+    end
   end
 end

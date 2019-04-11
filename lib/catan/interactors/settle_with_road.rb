@@ -21,6 +21,7 @@ class SettleWithRoad < Interactor
     state.settlements << Settlement.new(spot_index: @settlement_spot, owner: current_player)
     mutate_gain_resources(state)
     state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: current_player)
+    state.action_taken = true
   end
 
   def mutate_gain_resources(state)

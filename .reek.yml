@@ -6,6 +6,7 @@ detectors:
       # interactors deal on stateful object - state, therefore could be feature envies
       - 'SetupGame'
       - 'SettleWithRoad'
+      - 'EndTurn'
   Attribute:
     exclude:
       - 'State' # State is to be operated on
@@ -18,3 +19,9 @@ detectors:
     exclude:
       - 'SetupGame#validate' # validation should be in one method, it can make a long statement
       - 'State#initialize' # state contains many attributes which need to be initialized
+  DuplicateMethodCall:
+    exclude:
+      - 'EndTurn#mutate' # it reads better with duplications
+  UtilityFunction:
+    exclude:
+      - 'EndTurn#mutate' # EndTurn interactor is stateless

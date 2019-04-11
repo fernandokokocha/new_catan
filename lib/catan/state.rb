@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class State
-  attr_accessor :setup, :players, :current_player, :settlements, :roads, :tiles
+  attr_accessor :setup, :players, :current_player, :settlements, :roads, :tiles, :turn, :action_taken
 
   def initialize
     @setup = false
@@ -10,6 +10,8 @@ class State
     @settlements = []
     @roads = []
     @tiles = TileInitializer.basic_tiles
+    @turn = 1
+    @action_taken = false
   end
 
   def values
@@ -19,7 +21,8 @@ class State
       current_player: @current_player,
       settlements: @settlements,
       roads: @roads,
-      tiles: @tiles
+      tiles: @tiles,
+      action_taken: @action_taken
     }
   end
 
@@ -29,6 +32,10 @@ class State
 
   def settled?(spot_index)
     @settlements.detect { |settlement| settlement.spot_index == spot_index }
+  end
+
+  def action_taken?
+    @action_taken
   end
 
   def find_player_by_name(player_name)

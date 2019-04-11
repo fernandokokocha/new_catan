@@ -53,6 +53,11 @@ describe SettleWithRoad do
         call
         expect(game.roads.first).to eq(Road.new(from: 1, to: 2, owner: player))
       end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
     end
 
     # context 'when on not clear state' do
