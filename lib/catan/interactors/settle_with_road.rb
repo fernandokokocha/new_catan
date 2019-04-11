@@ -8,6 +8,7 @@ class SettleWithRoad < Interactor
 
   def validate(state)
     raise_uninitialized unless state.setup?
+    raise_action_already_taken if state.action_taken?
 
     raise_spot_already_settled(@settlement_spot) if state.settled?(@settlement_spot)
 
@@ -35,6 +36,10 @@ class SettleWithRoad < Interactor
 
   def raise_uninitialized
     raise IllegalOperation, 'Game not initialized'
+  end
+
+  def raise_action_already_taken
+    raise IllegalOperation, 'Action already taken'
   end
 
   def raise_spot_already_settled(spot_index)
