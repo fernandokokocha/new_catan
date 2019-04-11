@@ -28,4 +28,8 @@ class State
   def settled?(spot_index)
     @settlements.detect { |settlement| settlement.spot_index == spot_index }
   end
+
+  def find_player_by_name(player_name)
+    @players.detect { |player| player.name == player_name }
+  end
 end
