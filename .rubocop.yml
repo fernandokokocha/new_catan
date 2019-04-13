@@ -3,11 +3,15 @@ Metrics/LineLength:
 
 Metrics/ClassLength:
   Exclude:
-    - 'lib/catan/helpers/map_geometry.rb' #MapGeometry must contain long multi-line constants
+    - 'lib/catan/helpers/map_geometry.rb' # MapGeometry must contain long multi-line constants
 
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/catan/interactors/settle_with_road.rb' # temporary
 
 Style/Documentation:
   Enabled: false

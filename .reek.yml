@@ -12,16 +12,19 @@ detectors:
       - 'State' # State is to be operated on
       - 'Resources' # Needed to do clever meta-programming
   TooManyInstanceVariables:
-      exclude:
-      - 'State' # State consists on many
-      - 'Resources' # Resources consists 5 different resource types
+    exclude:
+    - 'State' # State consists on many
+    - 'Resources' # Resources consists 5 different resource types
   TooManyStatements:
     exclude:
       - 'SetupGame#validate' # validation should be in one method, it can make a long statement
       - 'State#initialize' # state contains many attributes which need to be initialized
+      - 'SettleWithRoad' # temporary
   DuplicateMethodCall:
     exclude:
       - 'EndTurn' # it reads better with duplications
+      - 'SettleWithRoad' # temporary
   UtilityFunction:
     exclude:
       - 'EndTurn' # EndTurn interactor is stateless
+      - 'SettleWithRoad' # temporary

@@ -134,6 +134,23 @@ describe SettleWithRoad do
     end
   end
 
+  context 'when invalid turn' do
+    before(:each) do
+      game.handle(@setup_game_interactor)
+      game.state.turn = 10
+    end
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Invalid turn for this operation: 10')
+    end
+  end
+
   context 'when action already taken in this turn' do
     before(:each) do
       game.handle(@setup_game_interactor)
