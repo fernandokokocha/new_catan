@@ -2,11 +2,11 @@
 
 class Tile
   VALID_RESOURCES = [
-    Resources::BRICK,
-    Resources::LUMBER,
-    Resources::WOOL,
-    Resources::GRAIN,
-    Resources::ORE
+    ::Resources::BRICK,
+    ::Resources::LUMBER,
+    ::Resources::WOOL,
+    ::Resources::GRAIN,
+    ::Resources::ORE
   ].freeze
 
   attr_reader :resource, :index

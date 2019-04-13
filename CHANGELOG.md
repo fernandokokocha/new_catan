@@ -5,6 +5,10 @@
 ### Changed
 - ...
 
+## [0.0.4]
+### Changed
+- Reference from Tile entity to Resources entity
+
 ## [0.0.3]
 ### Added
 - Color attribute to players
