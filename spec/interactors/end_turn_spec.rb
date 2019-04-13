@@ -64,7 +64,7 @@ describe EndTurn do
     end
   end
 
-  context 'players rotation' do
+  describe 'players rotation' do
     shared_examples 'correctly sets next player for turn' do |turn, next_player_index|
       it 'changes current player' do
         turn.times do

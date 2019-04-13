@@ -168,6 +168,28 @@ describe SettleWithRoad do
     end
   end
 
+  describe 'turn validation' do
+    shared_context 'implmenents turn validity' do |turn, validity|
+      it 'knows when turn is valid' do
+        game.state.turn = turn
+        expect(call.success?).to be(validity)
+      end
+    end
+
+    context 'when two players' do
+      before(:each) { game.handle(@setup_game_two_players_interactor) }
+
+      let(:players_fixtures) { @player_params_fixtures_two_players }
+
+      it_behaves_like 'implmenents turn validity', 1, true
+      it_behaves_like 'implmenents turn validity', 2, true
+      it_behaves_like 'implmenents turn validity', 3, true
+      it_behaves_like 'implmenents turn validity', 4, true
+      it_behaves_like 'implmenents turn validity', 5, false
+      it_behaves_like 'implmenents turn validity', 6, false
+    end
+  end
+
   context 'when spot is already taken' do
     before(:each) do
       game.handle(@setup_game_interactor)

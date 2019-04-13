@@ -15,12 +15,8 @@ class SettleWithRoad < Interactor
   end
 
   def turn_valid?
-    valid_turns.cover?(state.turn)
-  end
-
-  def valid_turns
     max_turn = state.players.count * 2
-    (1..max_turn)
+    state.turn <= max_turn
   end
 
   def validate_spots_occupancy
