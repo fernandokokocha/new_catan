@@ -1,9 +1,16 @@
 ## [Unreleased]
 ### Added
 - Color attribute to players
+- EndTurn interactor
+- Resources entity
+- Tile entity
+- TileInitializer helper
+- ArrayUtils module
 
 ### Changed
 - Ruby version `2.4.1` -> `2.6.2`
+- MapGeometry type (entity -> helper)
+- base interactor behavior and data flow (therefore each interactor individually too)
 
 ## [0.0.2]
 ### Added
