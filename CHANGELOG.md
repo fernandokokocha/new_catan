@@ -1,5 +1,12 @@
 ## [Unreleased]
 ### Added
+- ...
+
+### Changed
+- ...
+
+## [0.0.3]
+### Added
 - Color attribute to players
 - EndTurn interactor
 - Resources entity

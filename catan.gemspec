@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'catan'
-  s.version       = '0.0.2'
+  s.version       = '0.0.3'
   s.summary       = 'The Settlers of Catan board game simulator'
   s.authors       = ['Bartosz Krajka']
   s.email         = 'krajka.bartosz@gmail.com'
