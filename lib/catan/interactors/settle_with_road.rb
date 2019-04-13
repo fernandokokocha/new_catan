@@ -8,19 +8,27 @@ class SettleWithRoad < Interactor
 
   def validate
     raise_uninitialized unless state.setup?
-    raise_invalid_turn(state.turn) unless valid_turns.cover?(state.turn)
+    raise_invalid_turn(state.turn) unless turn_valid?
     raise_action_already_taken if state.action_taken?
 
-    raise_spot_already_settled(@settlement_spot) if state.settled?(@settlement_spot)
+    validate_spots_occupancy
+  end
 
-    MapGeometry.bordering_spot_indexes_for(@settlement_spot).each do |spot_index|
-      raise_bordering_spot_already_settled(@settlement_spot, spot_index) if state.settled?(spot_index)
-    end
+  def turn_valid?
+    valid_turns.cover?(state.turn)
   end
 
   def valid_turns
     max_turn = state.players.count * 2
     (1..max_turn)
+  end
+
+  def validate_spots_occupancy
+    raise_spot_already_settled(@settlement_spot) if state.settled?(@settlement_spot)
+
+    MapGeometry.bordering_spot_indexes_for(@settlement_spot).each do |spot_index|
+      raise_bordering_spot_already_settled(@settlement_spot, spot_index) if state.settled?(spot_index)
+    end
   end
 
   def mutate

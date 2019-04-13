@@ -9,10 +9,6 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
-Metrics/AbcSize:
-  Exclude:
-    - 'lib/catan/interactors/settle_with_road.rb' # temporary
-
 Style/Documentation:
   Enabled: false
 

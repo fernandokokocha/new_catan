@@ -10,18 +10,23 @@ class SetupGame < Interactor
 
   def validate
     raise_already_initialized if state.setup?
-    validate_players_count
 
+    validate_players_count
+    validate_players_params_uniqueness
+  end
+
+  def validate_players_count
+    players_count = @players_params.count
+    raise_too_few_players(players_count) if players_count < MIN_PLAYERS_COUNT
+    raise_too_many_players(players_count) if players_count > MAX_PLAYERS_COUNT
+  end
+
+  def validate_players_params_uniqueness
     player_names_dup = ArrayUtils.find_duplication(player_names)
     raise_player_names_duplication(player_names_dup) if player_names_dup
 
     player_colors_dup = ArrayUtils.find_duplication(player_colors)
     raise_player_colors_duplication(player_colors_dup) if player_colors_dup
-  end
-
-  def validate_players_count
-    raise_too_few_players if players_count < MIN_PLAYERS_COUNT
-    raise_too_many_players if players_count > MAX_PLAYERS_COUNT
   end
 
   def mutate
@@ -40,10 +45,6 @@ class SetupGame < Interactor
     raise_invalid_color(name, color)
   end
 
-  def players_count
-    @players_params.count
-  end
-
   def player_names
     @players_params.map { |player| player.fetch(:name) }
   end
@@ -56,12 +57,12 @@ class SetupGame < Interactor
     raise IllegalOperation, 'Game already initialized'
   end
 
-  def raise_too_few_players
+  def raise_too_few_players(players_count)
     message = "Too few players: #{players_count} instead of required at least #{MIN_PLAYERS_COUNT}"
     raise IllegalOperation, message
   end
 
-  def raise_too_many_players
+  def raise_too_many_players(players_count)
     message = "Too many players: #{players_count} instead of required at most #{MAX_PLAYERS_COUNT}"
     raise IllegalOperation, message
   end

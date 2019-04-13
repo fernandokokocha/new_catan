@@ -1,12 +1,6 @@
 detectors:
   IrresponsibleModule:
     enabled: false
-  FeatureEnvy:
-    exclude:
-      # interactors deal on stateful object - state, therefore could be feature envies
-      - 'SetupGame'
-      - 'SettleWithRoad'
-      - 'EndTurn'
   Attribute:
     exclude:
       - 'State' # State is to be operated on
@@ -14,17 +8,4 @@ detectors:
   TooManyInstanceVariables:
     exclude:
     - 'State' # State consists on many
-    - 'Resources' # Resources consists 5 different resource types
-  TooManyStatements:
-    exclude:
-      - 'SetupGame#validate' # validation should be in one method, it can make a long statement
-      - 'State#initialize' # state contains many attributes which need to be initialized
-      - 'SettleWithRoad' # temporary
-  DuplicateMethodCall:
-    exclude:
-      - 'EndTurn' # it reads better with duplications
-      - 'SettleWithRoad' # temporary
-  UtilityFunction:
-    exclude:
-      - 'EndTurn' # EndTurn interactor is stateless
-      - 'SettleWithRoad' # temporary
+    - 'Resources' # Resources consists of 5 different resource types

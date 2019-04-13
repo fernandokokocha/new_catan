@@ -13,9 +13,11 @@ class EndTurn < Interactor
   end
 
   def calc_next_player_index
-    return (state.players.count - state.turn - 1) if reversed_turn?
+    players_count = state.players.count
+    current_turn = state.turn
+    return (players_count - current_turn - 1) if reversed_turn?
 
-    state.turn % state.players.count
+    current_turn % players_count
   end
 
   def reversed_turn?
