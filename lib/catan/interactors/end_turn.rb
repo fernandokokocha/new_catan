@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 class EndTurn < Interactor
-  def validate(state)
+  def validate
     raise_uninitialized unless state.setup?
     raise_action_not_taken unless state.action_taken?
   end
 
-  def mutate(state)
-    state.current_player = state.players.fetch(calc_next_player_index(state))
+  def mutate
+    state.current_player = state.players.fetch(calc_next_player_index)
     state.turn += 1
     state.action_taken = false
   end
 
-  def calc_next_player_index(state)
-    return (state.players.count - state.turn - 1) if reversed_turn?(state)
+  def calc_next_player_index
+    return (state.players.count - state.turn - 1) if reversed_turn?
 
     state.turn % state.players.count
   end
 
-  def reversed_turn?(state)
+  def reversed_turn?
     players_count = state.players.count
     min_index = players_count
     max_index = players_count * 2

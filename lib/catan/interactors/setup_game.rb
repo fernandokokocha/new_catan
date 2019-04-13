@@ -8,10 +8,9 @@ class SetupGame < Interactor
     @players_params = players_params
   end
 
-  def validate(state)
+  def validate
     raise_already_initialized if state.setup?
-    raise_too_few_players if players_count < MIN_PLAYERS_COUNT
-    raise_too_many_players if players_count > MAX_PLAYERS_COUNT
+    validate_players_count
 
     player_names_dup = ArrayUtils.find_duplication(player_names)
     raise_player_names_duplication(player_names_dup) if player_names_dup
@@ -20,7 +19,12 @@ class SetupGame < Interactor
     raise_player_colors_duplication(player_colors_dup) if player_colors_dup
   end
 
-  def mutate(state)
+  def validate_players_count
+    raise_too_few_players if players_count < MIN_PLAYERS_COUNT
+    raise_too_many_players if players_count > MAX_PLAYERS_COUNT
+  end
+
+  def mutate
     state.setup = true
     state.players = @players_params.map { |player_params| build_player(player_params) }
     state.current_player = state.players.first

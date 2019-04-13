@@ -3,13 +3,16 @@
 class Interactor
   IllegalOperation = Class.new(StandardError)
 
+  attr_reader :state
+
   def invoke(state)
-    validate(state)
-    mutate(state)
+    @state = state
+    validate
+    mutate
     state
   end
 
-  def validate(_state); end
+  def validate; end
 
-  def mutate(_state); end
+  def mutate; end
 end

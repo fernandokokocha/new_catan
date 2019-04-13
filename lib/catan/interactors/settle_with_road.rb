@@ -6,9 +6,9 @@ class SettleWithRoad < Interactor
     @road_extension_spot = road_extension_spot
   end
 
-  def validate(state)
+  def validate
     raise_uninitialized unless state.setup?
-    raise_invalid_turn(state.turn) unless valid_turns(state).cover?(state.turn)
+    raise_invalid_turn(state.turn) unless valid_turns.cover?(state.turn)
     raise_action_already_taken if state.action_taken?
 
     raise_spot_already_settled(@settlement_spot) if state.settled?(@settlement_spot)
@@ -18,20 +18,20 @@ class SettleWithRoad < Interactor
     end
   end
 
-  def valid_turns(state)
+  def valid_turns
     max_turn = state.players.count * 2
     (1..max_turn)
   end
 
-  def mutate(state)
+  def mutate
     current_player = state.current_player
     state.settlements << Settlement.new(spot_index: @settlement_spot, owner: current_player)
-    mutate_gain_resources(state)
+    mutate_gain_resources
     state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: current_player)
     state.action_taken = true
   end
 
-  def mutate_gain_resources(state)
+  def mutate_gain_resources
     MapGeometry
       .bordering_tile_indexes_for_spot(@settlement_spot)
       .map { |tile_index| ArrayUtils.find_by_attribute(state.tiles, :index, tile_index) }
