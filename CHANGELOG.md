@@ -5,6 +5,10 @@
 ### Changed
 - ...
 
+## [0.0.5]
+### Changed
+- Reorder file loading in gem entry point
+
 ## [0.0.4]
 ### Changed
 - Reference from Tile entity to Resources entity
