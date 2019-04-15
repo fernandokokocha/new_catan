@@ -1,10 +1,14 @@
 ## [Unreleased]
 ### Added
-- Chit (frequency) to Tile entity
-- Desert Tile
+- ...
 
 ### Changed
 - ...
+
+## [0.1.0]
+### Added
+- Chit (frequency) to Tile entity
+- Desert Tile
 
 ## [0.0.5]
 ### Changed
