@@ -3,6 +3,10 @@
 - ...
 
 ### Changed
+- ...
+
+## [0.1.1]
+### Changed
 - Bugfix: Corrected indexes for regular tiles
 - Bugfix: SettleWithRoad resources gaining
 
