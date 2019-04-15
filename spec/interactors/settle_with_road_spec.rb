@@ -34,7 +34,7 @@ describe SettleWithRoad do
         call
         previous_player = game.find_player_by_name(current_player_name)
         expected = Resources.new(
-          brick: 2,
+          brick: 1,
           lumber: 1,
           wool: 0,
           grain: 0,
@@ -92,7 +92,7 @@ describe SettleWithRoad do
         call
         previous_player = game.find_player_by_name(current_player_name)
         expected = Resources.new(
-          brick: 2,
+          brick: 1,
           lumber: 1,
           wool: 0,
           grain: 0,

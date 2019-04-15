@@ -39,6 +39,7 @@ class SettleWithRoad < Interactor
     MapGeometry
       .bordering_tile_indexes_for_spot(@settlement_spot)
       .map { |tile_index| ArrayUtils.find_by_attribute(state.tiles, :index, tile_index) }
+      .reject { |tile| tile == Tile.build_desert }
       .each { |tile| state.current_player.resources.add_one(tile.resource) }
   end
 

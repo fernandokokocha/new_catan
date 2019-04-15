@@ -24,7 +24,7 @@ class TileInitializer
 
   def self.regular_tiles
     RESOURCES_SET.zip(CHITS).map.with_index do |(resource, chit), zero_based_index|
-      Tile.new(index: zero_based_index + 1, resource: resource, chit: chit)
+      Tile.new(index: zero_based_index + 2, resource: resource, chit: chit)
     end
   end
 end
