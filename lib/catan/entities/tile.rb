@@ -9,6 +9,8 @@ class Tile
     ::Resources::ORE
   ].freeze
 
+  DESERT = :desert
+
   attr_reader :index, :resource, :chit
 
   def initialize(index:, resource:, chit:)
@@ -18,8 +20,12 @@ class Tile
     raise ArgumentError, 'Invalid tile params' unless valid?
   end
 
+  def self.build_desert
+    new(index: 1, resource: DESERT, chit: 7)
+  end
+
   def valid?
-    VALID_RESOURCES.include?(@resource)
+    (VALID_RESOURCES + [DESERT]).include?(@resource)
   end
 
   def ==(other)
