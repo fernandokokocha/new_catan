@@ -67,10 +67,9 @@ describe EndTurn do
   describe 'players rotation' do
     shared_examples 'correctly sets next player for turn' do |turn, next_player_index|
       it 'changes current player' do
-        turn.times do
-          game.state.action_taken = true
-          game.handle(EndTurn.new)
-        end
+        game.handle(SetTurn.new(turn: turn))
+        game.handle(TakeAction.new)
+        game.handle(EndTurn.new)
         next_player_params = players_fixtures[next_player_index]
         expect(game.current_player.name).to eq(next_player_params[:name])
       end

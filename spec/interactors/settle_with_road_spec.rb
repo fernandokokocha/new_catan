@@ -171,7 +171,7 @@ describe SettleWithRoad do
   describe 'turn validation' do
     shared_context 'implmenents turn validity' do |turn, validity|
       it 'knows when turn is valid' do
-        game.state.turn = turn
+        game.handle(SetTurn.new(turn: turn))
         expect(call.success?).to be(validity)
       end
     end
