@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- Chit (frequency) to Tile entity
 
 ### Changed
 - ...

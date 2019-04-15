@@ -9,11 +9,12 @@ class Tile
     ::Resources::ORE
   ].freeze
 
-  attr_reader :resource, :index
+  attr_reader :index, :resource, :chit
 
-  def initialize(resource:, index:)
-    @resource = resource
+  def initialize(index:, resource:, chit:)
     @index = index
+    @resource = resource
+    @chit = chit
     raise ArgumentError, 'Invalid tile params' unless valid?
   end
 
@@ -23,7 +24,8 @@ class Tile
 
   def ==(other)
     (other.class == self.class) &&
+      (other.index == @index) &&
       (other.resource == @resource) &&
-      (other.index == @index)
+      (other.chit == @chit)
   end
 end
