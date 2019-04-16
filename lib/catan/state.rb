@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class State
-  attr_accessor :setup, :players, :current_player, :settlements, :roads, :tiles, :turn, :action_taken
+  attr_accessor :setup, :players, :settlements, :roads, :tiles, :turn, :action_taken
 
   def initialize
     @setup = false
     @players = []
-    @current_player = nil
     @settlements = []
     @roads = []
     @tiles = TileInitializer.basic_tiles
@@ -18,12 +17,18 @@ class State
     {
       setup: @setup,
       players: @players,
-      current_player: @current_player,
       settlements: @settlements,
       roads: @roads,
       tiles: @tiles,
       action_taken: @action_taken
     }
+  end
+
+  def current_player
+    return nil if @players.empty?
+
+    current_player_index = CurrentPlayerCalculator.calc_index(@turn, @players.count)
+    @players.fetch(current_player_index)
   end
 
   def setup?

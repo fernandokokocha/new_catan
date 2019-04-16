@@ -8,24 +8,7 @@ class EndTurn < Interactor
 
   def mutate
     state.turn += 1
-    current_player_index = CurrentPlayerCalculator.calc_index(state.turn, state.players.count)
-    state.current_player = state.players.fetch(current_player_index)
     state.action_taken = false
-  end
-
-  def calc_next_player_index
-    players_count = state.players.count
-    current_turn = state.turn
-    return (players_count - current_turn - 1) if reversed_turn?
-
-    current_turn % players_count
-  end
-
-  def reversed_turn?
-    players_count = state.players.count
-    min_index = players_count
-    max_index = players_count * 2
-    (min_index...max_index).cover?(state.turn)
   end
 
   private

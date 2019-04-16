@@ -32,7 +32,6 @@ class SetupGame < Interactor
   def mutate
     state.setup = true
     state.players = @players_params.map { |player_params| build_player(player_params) }
-    state.current_player = state.players.first
   end
 
   def build_player(player_params)
