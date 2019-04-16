@@ -2,7 +2,7 @@
 
 class CurrentPlayerCalculator
   def self.calc_index(turn, players_count)
-    return (players_count - turn) if reversed_turn?(turn, players_count)
+    return (players_count * 2 - turn) if reversed_turn?(turn, players_count)
 
     (turn - 1) % players_count
   end
