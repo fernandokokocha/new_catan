@@ -7,9 +7,9 @@ class EndTurn < Interactor
   end
 
   def mutate
+    state.turn += 1
     current_player_index = CurrentPlayerCalculator.calc_index(state.turn, state.players.count)
     state.current_player = state.players.fetch(current_player_index)
-    state.turn += 1
     state.action_taken = false
   end
 
