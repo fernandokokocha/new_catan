@@ -7,5 +7,8 @@ detectors:
       - 'Resources' # Needed to do clever meta-programming
   TooManyInstanceVariables:
     exclude:
-    - 'State' # State consists on many
-    - 'Resources' # Resources consists of 5 different resource types
+      - 'State' # State consists on many
+      - 'Resources' # Resources consists of 5 different resource types
+  DuplicateMethodCall:
+    exclude:
+      - 'EndTurn#mutate'
