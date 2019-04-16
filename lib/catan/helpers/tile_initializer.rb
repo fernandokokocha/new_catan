@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TileInitializer
+module TileInitializer
   RESOURCES_SET = [Resources::BRICK] * 3 +
                   [Resources::LUMBER] * 4 +
                   [Resources::WOOL] * 4 +

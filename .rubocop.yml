@@ -1,7 +1,7 @@
 Metrics/LineLength:
   Max: 120
 
-Metrics/ClassLength:
+Metrics/ModuleLength:
   Exclude:
     - 'lib/catan/helpers/map_geometry.rb' # MapGeometry must contain long multi-line constants
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CurrentPlayerCalculator
+module CurrentPlayerCalculator
   def self.calc_index(turn, players_count)
     return (players_count * 2 - turn) if reversed_turn?(turn, players_count)
 

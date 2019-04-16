@@ -37,7 +37,7 @@
 #                ╲      ╱
 #                41----40
 
-class MapGeometry
+module MapGeometry
   BORDERING_SPOTS = [
     [],
     [2, 6, 24],
