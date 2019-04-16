@@ -7,6 +7,7 @@ class CurrentPlayerCalculator
     (turn - 1) % players_count
   end
 
+  # Only the second round of turns is counter-clockwise
   def self.reversed_turn?(turn, players_count)
     min_index = players_count + 1
     max_index = players_count * 2
