@@ -9,6 +9,14 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/catan/serializers/game_serializer.rb' # this methid doesn't congruent here
+
 Style/Documentation:
   Enabled: false
 

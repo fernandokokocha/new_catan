@@ -2,6 +2,7 @@
 ### Added
 - Test interactors (used to synthetically manipulate state in tests)
 - CurrentPlayerCalculator helper
+- GameSerializer utility
 
 ### Changed
 - ...

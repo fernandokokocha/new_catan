@@ -9,6 +9,9 @@ detectors:
     exclude:
       - 'State' # State consists on many
       - 'Resources' # Resources consists of 5 different resource types
-  DuplicateMethodCall:
+  FeatureEnvy:
     exclude:
-      - 'EndTurn#mutate'
+      - 'GameSerializer' # serializers must be envy
+  UtilityFunction:
+    exclude:
+      - 'GameSerializer' # serializers are utilities by their nature
