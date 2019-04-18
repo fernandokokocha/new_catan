@@ -28,7 +28,7 @@ class State
     return nil if @players.empty?
 
     current_player_index = CurrentPlayerCalculator.calc_index(@turn, @players.count)
-    @players.fetch(current_player_index)
+    @players.detect { |player| player.index == current_player_index }
   end
 
   def setup?
