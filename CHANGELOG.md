@@ -1,12 +1,16 @@
 ## [Unreleased]
 ### Added
+- ...
+
+### Changed
+- ...
+
+## [0.2.0]
+### Added
 - Test interactors (used to synthetically manipulate state in tests)
 - CurrentPlayerCalculator helper
 - GameSerializer utility
 - index attribute to Player entity
-
-### Changed
-- ...
 
 ## [0.1.1]
 ### Changed
