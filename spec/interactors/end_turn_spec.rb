@@ -26,6 +26,7 @@ describe EndTurn do
     it 'changes current player' do
       call
       next_player = Player.new(
+        index: 1,
         name: @player_params_fixtures_two_players[1][:name],
         color: @player_params_fixtures_two_players[1][:color]
       )

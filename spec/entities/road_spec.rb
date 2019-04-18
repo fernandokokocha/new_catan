@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Road do
-  let(:player) { Player.new(name: 'Bartek', color: :orange) }
+  let(:player) { Player.new(index: 0, name: 'Bartek', color: :orange) }
   let(:road) { Road.new(from: 1, to: 2, owner: player) }
 
   it 'equals itself' do

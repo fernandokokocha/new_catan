@@ -31,13 +31,13 @@ class SetupGame < Interactor
 
   def mutate
     state.setup = true
-    state.players = @players_params.map { |player_params| build_player(player_params) }
+    state.players = @players_params.map.with_index { |player_params, index| build_player(index, player_params) }
   end
 
-  def build_player(player_params)
+  def build_player(index, player_params)
     name = player_params.fetch(:name)
     color = player_params.fetch(:color)
-    Player.new(name: name, color: color)
+    Player.new(index: index, name: name, color: color)
   rescue Player::EmptyName
     raise_empty_name
   rescue Player::InvalidColor
