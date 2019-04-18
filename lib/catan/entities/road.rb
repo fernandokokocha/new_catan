@@ -16,6 +16,10 @@ class Road
   end
 
   def ==(other)
-    (other.class == self.class) && (other.from == @from) && (other.to == @to) && (other.owner == @owner)
+    (other.class == self.class) && (other.owner == @owner) && same_or_symmetric_to(other)
+  end
+
+  def same_or_symmetric_to(other)
+    [from, to].sort == [other.from, other.to].sort
   end
 end
