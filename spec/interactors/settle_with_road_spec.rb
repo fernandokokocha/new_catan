@@ -137,7 +137,7 @@ describe SettleWithRoad do
   context 'when invalid turn' do
     before(:each) do
       game.handle(@setup_game_interactor)
-      game.state.turn = 10
+      game.handle(SetTurn.new(turn: 10))
     end
 
     it_behaves_like 'not mutating interaction'
