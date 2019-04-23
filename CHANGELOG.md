@@ -1,9 +1,13 @@
 ## [Unreleased]
 ### Added
-- GameDeserializer utility
+- ...
 
 ### Changed
 - ...
+
+## [0.3.0]
+### Added
+- GameDeserializer utility
 
 ## [0.2.0]
 ### Added
