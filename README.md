@@ -16,13 +16,18 @@ Continuation of [Catan v1](https://github.com/fernandokokocha/catan)
 
 ## Setup
 
-* `bundle install`
+1. `bundle install`
+2. `overcommit --install` - to install git hooks from .overcommit.yml
+
+## How to test
+
+1. Aim for black-box approach. Arrange, act and assert only via main entity - `Game`
+2. Prefer real interactors in tests. In special cases (complicated setup, unnecessary overhead), use synthetic (test) interactors.
+3. The aim is 100% coverage in mutation tests. However, this applies to non-trivial units like interactors.
 
 ## Mutant
 
-Overcommit can't trigger mutant. Please don't commit any code that doesn't pass mutation tests.
-
-To run:
+Overcommit can't trigger mutant. To run:
 
 `bundle exec mutant --use rspec 'SetupGame'`
 
@@ -30,7 +35,7 @@ The last argument is a pattern (could contain a '*' wildcard) for names (class a
 
 ## Other quality tools
 
-Overcommit tool uses Rubocop, Reek, and RSpec on the adequate development phases. There's no need for additional configuration on your side.
+Overcommit tool uses Rubocop, Reek, and RSpec on the adequate development phases. Other than installation git hooks (see: Setup), there's no need for additional configuration on your side.
 
 If you want to run them separately:
 
