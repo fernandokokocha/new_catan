@@ -9,12 +9,12 @@ describe GameDeserializer do
   subject(:call) { deserializer.call }
 
   context 'on intial game' do
-    it 'serializes to JSON' do
+    it 'deserializes to equal game object' do
       expect(call).to eq(game)
     end
   end
 
-  context 'after 4 settle with road turns' do
+  context 'after 4 settle with road turns (no end turn)' do
     before(:each) do
       game.handle(@setup_game_interactor)
       game.handle(SettleWithRoad.new(settlement_spot: 1, road_extension_spot: 2))
@@ -24,10 +24,9 @@ describe GameDeserializer do
       game.handle(SettleWithRoad.new(settlement_spot: 5, road_extension_spot: 6))
       game.handle(EndTurn.new)
       game.handle(SettleWithRoad.new(settlement_spot: 7, road_extension_spot: 8))
-      game.handle(EndTurn.new)
     end
 
-    it 'serializes to JSON' do
+    it 'deserializes to equal game object' do
       expect(call).to eq(game)
     end
   end

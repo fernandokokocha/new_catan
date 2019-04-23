@@ -20,7 +20,8 @@ class State
       settlements: @settlements,
       roads: @roads,
       tiles: @tiles,
-      action_taken: @action_taken
+      action_taken: @action_taken,
+      turn: @turn
     }
   end
 

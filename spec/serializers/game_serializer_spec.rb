@@ -19,7 +19,7 @@ describe GameSerializer do
       }
     end
 
-    it 'serializes to JSON' do
+    it 'serializes to hash' do
       expect(call).to eq(expected)
     end
   end
@@ -70,7 +70,7 @@ describe GameSerializer do
       }
     end
 
-    it 'serializes to JSON' do
+    it 'serializes to hash' do
       call
       expect(call).to eq(expected)
     end
