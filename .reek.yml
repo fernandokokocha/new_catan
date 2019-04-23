@@ -15,3 +15,4 @@ detectors:
   UtilityFunction:
     exclude:
       - 'GameSerializer' # serializers are utilities by their nature
+      - 'GameDeserializer' # deserializers are utilities by their nature

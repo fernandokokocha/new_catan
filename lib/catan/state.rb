@@ -46,4 +46,8 @@ class State
   def find_player_by_name(player_name)
     @players.detect { |player| player.name == player_name }
   end
+
+  def ==(other)
+    (other.class == self.class) && (other.values == values)
+  end
 end

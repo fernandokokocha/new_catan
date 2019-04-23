@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'json'
-
 describe GameSerializer do
-  let(:serializator) { GameSerializer.new(game) }
+  let(:serializer) { GameSerializer.new(game) }
 
-  subject(:call) { serializator.call }
+  subject(:call) { serializer.call }
 
   context 'on intial game' do
     let(:game) { Game.new }

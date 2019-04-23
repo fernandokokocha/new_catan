@@ -18,4 +18,8 @@ class Game
   rescue Interactor::IllegalOperation => exeception
     InteractionFailure.new(message: exeception.message)
   end
+
+  def ==(other)
+    (other.class == self.class) && (other.state == @state)
+  end
 end
