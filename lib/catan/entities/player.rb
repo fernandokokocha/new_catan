@@ -6,11 +6,11 @@ class Player
 
   attr_reader :index, :name, :color, :resources
 
-  def initialize(index:, name:, color:)
+  def initialize(index:, name:, color:, resources: Resources.create_empty_bank)
     @index = index
     @name = name
     @color = color
-    @resources = Resources.create_empty_bank
+    @resources = resources
     raise EmptyName unless name_valid?
     raise InvalidColor unless color_valid?
   end

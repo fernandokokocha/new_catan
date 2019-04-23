@@ -1,6 +1,8 @@
 detectors:
   IrresponsibleModule:
-    enabled: false
+    enabled: false # no need. Aim for clean code and high test coverage
+  TooManyStatements:
+    enabled: false # it works nondeterministically, plus is probably covered by Rubocop
   Attribute:
     exclude:
       - 'State' # State is to be operated on
@@ -11,7 +13,8 @@ detectors:
       - 'Resources' # Resources consists of 5 different resource types
   FeatureEnvy:
     exclude:
-      - 'GameSerializer' # serializers must be envy
+      - 'GameSerializer' # serializers must be envious
+      - 'GameDeserializer' # deserializers must be envious
   UtilityFunction:
     exclude:
       - 'GameSerializer' # serializers are utilities by their nature

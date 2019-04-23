@@ -2,11 +2,11 @@
 
 describe GameSerializer do
   let(:serializer) { GameSerializer.new(game) }
+  let(:game) { Game.new }
 
   subject(:call) { serializer.call }
 
   context 'on intial game' do
-    let(:game) { Game.new }
     let(:expected) do
       {
         setup: false,
@@ -25,8 +25,6 @@ describe GameSerializer do
   end
 
   context 'after 4 settle with road turns' do
-    let(:game) { Game.new }
-
     before(:each) do
       game.handle(@setup_game_interactor)
       game.handle(SettleWithRoad.new(settlement_spot: 1, road_extension_spot: 2))
