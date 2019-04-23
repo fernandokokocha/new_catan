@@ -8,11 +8,11 @@ describe Road do
     expect(road).to eq(road)
   end
 
-  it 'equals different road with the same fields' do
+  it 'equals different road with the same attributes' do
     expect(road).to eq(Road.new(from: 1, to: 2, owner: player))
   end
 
-  it 'equals simetric road' do
+  it 'equals symmetric road' do
     expect(road).to eq(Road.new(from: 2, to: 1, owner: player))
   end
 end
