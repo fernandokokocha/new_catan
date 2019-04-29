@@ -1,9 +1,13 @@
 ## [Unreleased]
 ### Added
-- SettleWithRoad interactor: validation of spots bordering
+- ...
 
 ### Changed
 - ...
+
+## [0.3.1]
+### Added
+- SettleWithRoad interactor: validation of spots bordering
 
 ## [0.3.0]
 ### Added
