@@ -227,4 +227,23 @@ describe SettleWithRoad do
       expect(call.message).to eq("Spot \##{spot_index}: bordering spot \##{bordering_spot} is already settled")
     end
   end
+
+  context 'when road built not in bordering spots' do
+    let(:spot_index) { 1 }
+    let(:other_spot_index) { 54 }
+
+    before(:each) do
+      game.handle(@setup_game_interactor)
+    end
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq("Road cannot be built, spots do not border: \##{spot_index}, \##{other_spot_index}")
+    end
+  end
 end

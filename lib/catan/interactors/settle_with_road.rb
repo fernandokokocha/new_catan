@@ -11,12 +11,18 @@ class SettleWithRoad < Interactor
     raise_invalid_turn(state.turn) unless turn_valid?
     raise_action_already_taken if state.action_taken?
 
+    validate_spots_bordering
     validate_spots_occupancy
   end
 
   def turn_valid?
     max_turn = state.players.count * 2
     state.turn <= max_turn
+  end
+
+  def validate_spots_bordering
+    spot_bordering = MapGeometry.bordering_spot_indexes_for(@settlement_spot).include?(@road_extension_spot)
+    raise_spots_not_bordering(@settlement_spot, @road_extension_spot) unless spot_bordering
   end
 
   def validate_spots_occupancy
@@ -55,6 +61,11 @@ class SettleWithRoad < Interactor
 
   def raise_action_already_taken
     raise IllegalOperation, 'Action already taken'
+  end
+
+  def raise_spots_not_bordering(spot_1_index, spot_2_index)
+    message = "Road cannot be built, spots do not border: \##{spot_1_index}, \##{spot_2_index}"
+    raise IllegalOperation, message
   end
 
   def raise_spot_already_settled(spot_index)
