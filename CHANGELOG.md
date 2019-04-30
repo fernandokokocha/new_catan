@@ -3,9 +3,13 @@
 - ...
 
 ### Changed
+- ...
+
+## [0.4.0]
+### Changed
 - GameSerializator and GameDeserializator work on string-based hash rather than symbol-based
 - Serialization is JSON compatible
-- Deserialization from JSON 
+- Deserialization from JSON
 
 ## [0.3.1]
 ### Added
