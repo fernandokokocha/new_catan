@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 describe GameDeserializer do
   let(:serializer) { GameSerializer.new(game) }
   let(:deserializer) { GameDeserializer.new(hash) }
@@ -28,6 +30,15 @@ describe GameDeserializer do
 
     it 'deserializes to equal game object' do
       expect(call).to eq(game)
+    end
+
+    context 'when serialized to json' do
+      let(:json) { serializer.call.to_json }
+      let(:hash) { JSON.parse(json) }
+
+      it 'deserializes from json' do
+        expect(call).to eq(game)
+      end
     end
   end
 end

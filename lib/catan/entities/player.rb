@@ -9,7 +9,7 @@ class Player
   def initialize(index:, name:, color:, resources: Resources.create_empty_bank)
     @index = index
     @name = name
-    @color = color
+    @color = color.to_sym
     @resources = resources
     raise EmptyName unless name_valid?
     raise InvalidColor unless color_valid?
