@@ -9,7 +9,7 @@ class Game
   def_delegators :state, :tiles, :find_player_by_name, :turn, :action_taken?, :score
 
   def initialize
-    @state = State.new
+    @state = QueryableState.new
   end
 
   def handle(interactor)

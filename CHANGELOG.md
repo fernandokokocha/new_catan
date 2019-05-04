@@ -3,7 +3,7 @@
 - Player score
 
 ### Changed
-- ...
+- QueryableState extracted from State
 
 ## [0.4.0]
 ### Changed

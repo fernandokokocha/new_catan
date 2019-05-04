@@ -2,6 +2,9 @@
 
 Dir[File.join(__dir__, 'catan', '*.rb')].each { |file| require file }
 
+require File.join(__dir__, 'catan', 'state', 'state.rb')
+require File.join(__dir__, 'catan', 'state', 'queryable_state.rb')
+
 require File.join(__dir__, 'catan', 'entities', 'resources.rb')
 Dir[File.join(__dir__, 'catan', 'entities', '*.rb')].each { |file| require file }
 
