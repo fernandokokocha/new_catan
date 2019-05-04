@@ -26,6 +26,11 @@ describe SetupGame do
       expect(game.players).to eq(expected_player_list)
     end
 
+    it 'sets up players with 0 points' do
+      call
+      game.players.each { |player| expect(game.score(player)).to be(0) }
+    end
+
     it 'sets up current player' do
       call
       expect(game.current_player).to eq(expected_current_player)

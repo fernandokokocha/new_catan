@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- Player score
 
 ### Changed
 - ...

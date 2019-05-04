@@ -48,6 +48,10 @@ class State
     @players.detect { |player| player.name == player_name }
   end
 
+  def score(player)
+    @settlements.select { |settlement| settlement.owner == player }.count
+  end
+
   def ==(other)
     (other.class == self.class) && (other.values == values)
   end
