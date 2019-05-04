@@ -31,5 +31,9 @@ describe Game do
     it 'has first turn' do
       expect(game.turn).to be(1)
     end
+
+    it 'has no action taken' do
+      expect(game.action_taken?).to be(false)
+    end
   end
 end
