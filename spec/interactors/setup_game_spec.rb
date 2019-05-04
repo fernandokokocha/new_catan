@@ -9,7 +9,7 @@ describe SetupGame do
 
   subject(:call) { game.handle(interactor) }
 
-  context 'with valid data' do
+  shared_examples 'proper game setup' do
     it_behaves_like 'mutating interaction'
 
     it 'returns success' do
@@ -23,18 +23,26 @@ describe SetupGame do
 
     it 'sets up players' do
       call
-      expect(game.players).to eq(
-        [
-          Player.new(index: 0, name: 'Bartek', color: :orange),
-          Player.new(index: 1, name: 'Leo', color: :blue)
-        ]
-      )
+      expect(game.players).to eq(expected_player_list)
     end
 
     it 'sets up current player' do
       call
-      expect(game.current_player).to eq(Player.new(index: 0, name: 'Bartek', color: :orange))
+      expect(game.current_player).to eq(expected_current_player)
     end
+  end
+
+  context 'with valid data' do
+    let(:expected_player_list) do
+      [
+        Player.new(index: 0, name: 'Bartek', color: :orange),
+        Player.new(index: 1, name: 'Leo', color: :blue)
+      ]
+    end
+
+    let(:expected_current_player) { Player.new(index: 0, name: 'Bartek', color: :orange) }
+
+    it_behaves_like 'proper game setup'
   end
 
   context 'when valid data - 4 players' do
@@ -47,33 +55,18 @@ describe SetupGame do
       ]
     end
 
-    it_behaves_like 'mutating interaction'
-
-    it 'returns success' do
-      expect(call.success?).to be(true)
+    let(:expected_player_list) do
+      [
+        Player.new(index: 0, name: 'Bartek', color: :orange),
+        Player.new(index: 1, name: 'Leo', color: :blue),
+        Player.new(index: 2, name: 'Carles', color: :white),
+        Player.new(index: 3, name: 'Gerard', color: :red)
+      ]
     end
 
-    it 'sets up game' do
-      call
-      expect(game.setup?).to be(true)
-    end
+    let(:expected_current_player) { Player.new(index: 0, name: 'Bartek', color: :orange) }
 
-    it 'sets up players' do
-      call
-      expect(game.players).to eq(
-        [
-          Player.new(index: 0, name: 'Bartek', color: :orange),
-          Player.new(index: 1, name: 'Leo', color: :blue),
-          Player.new(index: 2, name: 'Carles', color: :white),
-          Player.new(index: 3, name: 'Gerard', color: :red)
-        ]
-      )
-    end
-
-    it 'sets up current player' do
-      call
-      expect(game.current_player).to eq(Player.new(index: 0, name: 'Bartek', color: :orange))
-    end
+    it_behaves_like 'proper game setup'
   end
 
   context 'when invalid color of player' do
