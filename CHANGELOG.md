@@ -1,5 +1,12 @@
 ## [Unreleased]
 ### Added
+- ...
+
+### Changed
+- ...
+
+## [0.5.0]
+### Added
 - Player score
 
 ### Changed
