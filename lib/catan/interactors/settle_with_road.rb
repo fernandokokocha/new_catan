@@ -35,8 +35,9 @@ class SettleWithRoad < Interactor
 
   def mutate
     current_player = state.current_player
+
     state.settlements << Settlement.new(spot_index: @settlement_spot, owner: current_player)
-    mutate_gain_resources
+    mutate_gain_resources if second_reversed_turn?
     state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: current_player)
     state.action_taken = true
   end
@@ -47,6 +48,11 @@ class SettleWithRoad < Interactor
       .map { |tile_index| ArrayUtils.find_by_attribute(state.tiles, :index, tile_index) }
       .reject { |tile| tile == Tile.build_desert }
       .each { |tile| state.current_player.resources.add_one(tile.resource) }
+  end
+
+  def second_reversed_turn?
+    players_count = state.players.count
+    (players_count + 1..players_count * 2).cover?(state.turn)
   end
 
   private

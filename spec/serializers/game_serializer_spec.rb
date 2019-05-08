@@ -44,12 +44,12 @@ describe GameSerializer do
           {
             'name' => 'Bartek',
             'color' => 'orange',
-            'resources' => { 'brick' => 2, 'lumber' => 2, 'wool' => 0, 'grain' => 0, 'ore' => 1 }
+            'resources' => { 'brick' => 1, 'lumber' => 1, 'wool' => 0, 'grain' => 0, 'ore' => 1 }
           },
           {
             'name' => 'Leo',
             'color' => 'blue',
-            'resources' => { 'brick' => 2, 'lumber' => 2, 'wool' => 0, 'grain' => 0, 'ore' => 0 }
+            'resources' => { 'brick' => 0, 'lumber' => 2, 'wool' => 0, 'grain' => 0, 'ore' => 0 }
           }
         ],
         'settlements' => [

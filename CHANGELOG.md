@@ -3,7 +3,7 @@
 - ...
 
 ### Changed
-- ...
+- Game logic: gain resources only on second settle with road action
 
 ## [0.5.0]
 ### Added

@@ -29,18 +29,11 @@ describe SettleWithRoad do
         expect(game.settlements.first).to eq(Settlement.new(spot_index: 1, owner: player))
       end
 
-      it 'adds resources to current player' do
+      it 'does not add resources to current player' do
         current_player_name = game.current_player.name
         call
         previous_player = game.find_player_by_name(current_player_name)
-        expected = Resources.new(
-          brick: 1,
-          lumber: 1,
-          wool: 0,
-          grain: 0,
-          ore: 0
-        )
-        expect(previous_player.resources).to eq(expected)
+        expect(previous_player.resources).to eq(Resources.create_empty_bank)
       end
 
       it 'builds one road' do
@@ -65,10 +58,66 @@ describe SettleWithRoad do
       end
     end
 
-    context 'when on not clear state' do
+    context 'when on not clear state - first turn' do
       before(:each) do
         game.handle(@setup_game_interactor)
         game.handle(SettleWithRoad.new(settlement_spot: 3, road_extension_spot: 4))
+        game.handle(EndTurn.new)
+      end
+
+      it_behaves_like 'mutating interaction'
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'settles one spot' do
+        old_length = game.settlements.length
+        call
+        expect(game.settlements.length).to eq(old_length + 1)
+      end
+
+      it 'settles correct spot' do
+        old_settlements = game.settlements.clone
+        player = game.current_player
+        call
+        new_settlement = (game.settlements - old_settlements).first
+        expect(new_settlement).to eq(Settlement.new(spot_index: 1, owner: player))
+      end
+
+      it 'does not add resources to current player' do
+        current_player_name = game.current_player.name
+        call
+        previous_player = game.find_player_by_name(current_player_name)
+        expect(previous_player.resources).to eq(Resources.create_empty_bank)
+      end
+
+      it 'builds one road' do
+        old_length = game.roads.length
+        call
+        expect(game.roads.length).to eq(old_length + 1)
+      end
+
+      it 'builds correct road' do
+        old_roads = game.roads.clone
+        player = game.current_player
+        call
+        new_road = (game.roads - old_roads).first
+        expect(new_road).to eq(Road.new(from: 1, to: 2, owner: player))
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+    end
+
+    context 'when on not clear state - second round' do
+      before(:each) do
+        game.handle(@setup_game_interactor)
+        game.handle(SettleWithRoad.new(settlement_spot: 3, road_extension_spot: 4))
+        game.handle(EndTurn.new)
+        game.handle(SettleWithRoad.new(settlement_spot: 10, road_extension_spot: 11))
         game.handle(EndTurn.new)
       end
 
