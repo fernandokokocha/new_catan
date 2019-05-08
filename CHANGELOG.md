@@ -1,9 +1,10 @@
 ## [Unreleased]
 ### Added
-- ...
+- TurnTypeCalculator helper
 
 ### Changed
 - Game logic: gain resources only on second settle with road action
+- CurrentPlayerCalculator type: module -> class
 
 ## [0.5.0]
 ### Added

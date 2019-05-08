@@ -8,7 +8,7 @@ class QueryableState < State
   def current_player
     return nil if players.empty?
 
-    current_player_index = CurrentPlayerCalculator.calc_index(turn, players.count)
+    current_player_index = CurrentPlayerCalculator.new(players.count).calc_index(turn)
     players.detect { |player| player.index == current_player_index }
   end
 

@@ -34,12 +34,14 @@ class SettleWithRoad < Interactor
   end
 
   def mutate
-    current_player = state.current_player
-
-    state.settlements << Settlement.new(spot_index: @settlement_spot, owner: current_player)
-    mutate_gain_resources if second_reversed_turn?
-    state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: current_player)
+    mutate_build_settlement
+    mutate_gain_resources if TurnTypeCalculator.new(state.players.count).reversed_turn?(state.turn)
+    mutate_build_road
     state.action_taken = true
+  end
+
+  def mutate_build_settlement
+    state.settlements << Settlement.new(spot_index: @settlement_spot, owner: state.current_player)
   end
 
   def mutate_gain_resources
@@ -50,9 +52,8 @@ class SettleWithRoad < Interactor
       .each { |tile| state.current_player.resources.add_one(tile.resource) }
   end
 
-  def second_reversed_turn?
-    players_count = state.players.count
-    (players_count + 1..players_count * 2).cover?(state.turn)
+  def mutate_build_road
+    state.roads << Road.new(from: @settlement_spot, to: @road_extension_spot, owner: state.current_player)
   end
 
   private

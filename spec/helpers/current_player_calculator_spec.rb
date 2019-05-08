@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe CurrentPlayerCalculator do
-  subject(:call) { CurrentPlayerCalculator.calc_index(turn, players_count) }
+  subject(:call) { CurrentPlayerCalculator.new(players_count).calc_index(turn) }
 
   shared_examples 'player index calculator' do |turn, player_index|
     let(:turn) { turn }
