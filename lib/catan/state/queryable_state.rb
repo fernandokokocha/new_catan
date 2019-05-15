@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class QueryableState < State
-  def initialize
-    super
-  end
-
+class QueryableState < SimpleDelegator
   def current_player
     return nil if players.empty?
 

@@ -6,7 +6,7 @@ class Interactor
   attr_reader :state
 
   def invoke(state)
-    @state = state
+    @state = QueryableState.new(state)
     validate
     mutate
     state
