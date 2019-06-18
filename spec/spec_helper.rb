@@ -4,6 +4,7 @@ require_relative File.join('..', 'lib', 'catan.rb')
 require_relative File.join('.', 'shared', 'interactions.rb')
 require_relative File.join('.', 'test_interactors', 'set_turn.rb')
 require_relative File.join('.', 'test_interactors', 'take_action.rb')
+require_relative File.join('.', 'test_interactors', 'build_settlement.rb')
 
 RSpec.configure do |config|
   config.before(:example) do
