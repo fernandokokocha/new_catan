@@ -110,7 +110,7 @@ module MapGeometry
     [3, 9, 10],
     [3, 10, 11],
     [3, 4, 11],
-    [3, 11, 12],
+    [4, 11, 12],
     [4, 12, 13],
     [4, 5, 13],
     [5, 13, 14],
@@ -154,6 +154,29 @@ module MapGeometry
     [8, 19]
   ].freeze
 
+  BORDERING_SPOTS_FOR_TILE = [
+    [],
+    [1, 2, 3, 4, 5, 6],
+    [1, 2, 7, 8, 9, 24],
+    [2, 3, 9, 10, 11, 12],
+    [3, 4, 12, 13, 14, 15],
+    [4, 5, 15, 16, 17, 18],
+    [5, 6, 18, 19, 20, 21],
+    [1, 6, 21, 22, 23, 24],
+    [7, 8, 25, 26, 27, 54],
+    [8, 9, 10, 27, 28, 29],
+    [10, 11, 29, 30, 31, 32],
+    [11, 12, 13, 32, 33, 34],
+    [13, 14, 34, 35, 36, 37],
+    [14, 15, 16, 37, 38, 39],
+    [16, 17, 39, 40, 41, 42],
+    [17, 18, 19, 42, 43, 44],
+    [19, 20, 44, 45, 46, 47],
+    [20, 21, 22, 47, 48, 49],
+    [22, 23, 49, 50, 51, 52],
+    [7, 23, 24, 52, 53, 54]
+  ].freeze
+
   def self.possible_spot_indexes
     (1..54)
   end
@@ -164,5 +187,9 @@ module MapGeometry
 
   def self.bordering_tile_indexes_for_spot(spot_index)
     BORDERING_TILES_FOR_SPOT.fetch(spot_index)
+  end
+
+  def self.bordering_spot_indexes_for_tile(tile_index)
+    BORDERING_SPOTS_FOR_TILE.fetch(tile_index)
   end
 end

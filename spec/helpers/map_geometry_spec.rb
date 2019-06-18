@@ -11,5 +11,11 @@ describe MapGeometry do
         expect(MapGeometry.bordering_spot_indexes_for(bordering_spot_index)).to include(spot_index)
       end
     end
+
+    MapGeometry.bordering_tile_indexes_for_spot(spot_index).each do |tile_index|
+      it "spot \##{spot_index} borders tile \##{tile_index} and vice versa" do
+        expect(MapGeometry.bordering_spot_indexes_for_tile(tile_index)).to include(spot_index)
+      end
+    end
   end
 end
