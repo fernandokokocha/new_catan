@@ -16,8 +16,7 @@ class SettleWithRoad < Interactor
   end
 
   def turn_valid?
-    max_turn = state.players.count * 2
-    state.turn <= max_turn
+    TurnTypeCalculator.new(state.players.count).build_up_turn?(state.turn)
   end
 
   def validate_spots_bordering
