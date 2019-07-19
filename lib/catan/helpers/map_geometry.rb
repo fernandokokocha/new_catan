@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-#  Hexes' indexes:
+#  Tiles' indexes:
 #            ____
 #       ____╱  8 ╲____
 #  ____╱ 19 ╲____╱  9 ╲____
@@ -191,5 +191,9 @@ module MapGeometry
 
   def self.bordering_spot_indexes_for_tile(tile_index)
     BORDERING_SPOTS_FOR_TILE.fetch(tile_index)
+  end
+
+  def self.tile_borders_spot?(tile_index, spot_index)
+    bordering_spot_indexes_for_tile(tile_index).include?(spot_index)
   end
 end

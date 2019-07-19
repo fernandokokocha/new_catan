@@ -56,9 +56,146 @@ describe GainResources do
       end
     end
 
-    context 'when many settlements around from same player'
-    context 'when many settlements around from different players'
-    context 'when settlements around different tiles'
+    context 'when many settlements around from same player' do
+      before(:each) do
+        game.handle(BuildSettlement.new(player: player, spot: spot))
+        game.handle(BuildSettlement.new(player: player, spot: spot_2))
+      end
+
+      let(:player) { game.players[0] }
+      let(:spot) { 1 }
+      let(:spot_2) { 9 }
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+
+      it 'gives resources to player' do
+        call
+        expected = Resources.new(
+          brick: 2,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player.resources).to eq(expected)
+      end
+    end
+
+    context 'when many settlements around from different players' do
+      before(:each) do
+        game.handle(BuildSettlement.new(player: player, spot: spot))
+        game.handle(BuildSettlement.new(player: player_2, spot: spot_2))
+      end
+
+      let(:player) { game.players[0] }
+      let(:player_2) { game.players[1] }
+      let(:spot) { 1 }
+      let(:spot_2) { 9 }
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+
+      it 'gives resources to player 1' do
+        call
+        expected = Resources.new(
+          brick: 1,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player.resources).to eq(expected)
+      end
+
+      it 'gives resources to player 2' do
+        call
+        expected = Resources.new(
+          brick: 1,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player_2.resources).to eq(expected)
+      end
+    end
+
+    context 'when two settlements around two different tiles' do
+      before(:each) do
+        game.handle(BuildSettlement.new(player: player, spot: spot))
+        game.handle(BuildSettlement.new(player: player, spot: spot_2))
+      end
+
+      let(:chit) { 3 }
+      let(:player) { game.players[0] }
+      let(:spot) { 9 }
+      let(:spot_2) { 15 }
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+
+      it 'gives resources to player 1' do
+        call
+        expected = Resources.new(
+          brick: 2,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player.resources).to eq(expected)
+      end
+    end
+
+    context 'when one settlement around two different tiles' do
+      before(:each) do
+        game.handle(BuildSettlement.new(player: player, spot: spot))
+      end
+
+      let(:chit) { 3 }
+      let(:player) { game.players[0] }
+      let(:spot) { 3 }
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+
+      it 'gives resources to player 1' do
+        call
+        expected = Resources.new(
+          brick: 2,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player.resources).to eq(expected)
+      end
+    end
   end
 
   context 'when game not set up' do

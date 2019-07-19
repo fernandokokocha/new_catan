@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Added
 - TurnTypeCalculator helper
+- GainResources interactor
 
 ### Changed
 - Game logic: gain resources only on second settle with road action

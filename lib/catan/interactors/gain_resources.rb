@@ -29,22 +29,21 @@ class GainResources < Interactor
   end
 
   def mutate
-    state
-      .settlements
-      .select { |settlement| spot_indexes.include?(settlement.spot_index) }
-      .each { |settlement| settlement.owner.resources.add_one(tile.resource) }
+    tiles.each { |tile| mutate_gain_resources(tile) }
     state.action_taken = true
   end
 
-  def tile
+  def mutate_gain_resources(tile)
     state
-      .tiles
-      .select { |tile| tile.chit == @chit }
-      .first
+      .settlements
+      .select { |settlement| MapGeometry.tile_borders_spot?(tile.index, settlement.spot_index) }
+      .each { |settlement| settlement.owner.resources.add_one(tile.resource) }
   end
 
-  def spot_indexes
-    MapGeometry.bordering_spot_indexes_for_tile(tile.index)
+  def tiles
+    state
+      .tiles
+      .select { |tile| tile.chit.equal?(@chit) }
   end
 
   private

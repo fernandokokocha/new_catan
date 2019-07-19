@@ -15,6 +15,7 @@ detectors:
     exclude:
       - 'GameSerializer' # serializers must be envious
       - 'GameDeserializer' # deserializers must be envious
+      - 'GainResources#mutate_gain_resources' # deserializers must be envious
   UtilityFunction:
     exclude:
       - 'GameSerializer' # serializers are utilities by their nature
