@@ -5,6 +5,11 @@ class TurnTypeCalculator
     @players_count = players_count
   end
 
+  def initial_turn?(turn)
+    max_turn = @players_count
+    turn <= max_turn
+  end
+
   # Only the second round of turns is counter-clockwise
   def reversed_turn?(turn)
     min_turn = @players_count + 1

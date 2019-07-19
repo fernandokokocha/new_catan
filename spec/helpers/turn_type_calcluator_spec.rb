@@ -100,4 +100,50 @@ describe TurnTypeCalculator do
       it_behaves_like 'turn type calculator', 12, true
     end
   end
+
+  describe 'initial_turn?' do
+    subject(:call) { TurnTypeCalculator.new(players_count).initial_turn?(turn) }
+
+    context 'when two players' do
+      let(:players_count) { 2 }
+
+      it_behaves_like 'turn type calculator', 1, true
+      it_behaves_like 'turn type calculator', 2, true
+      it_behaves_like 'turn type calculator', 3, false
+      it_behaves_like 'turn type calculator', 4, false
+      it_behaves_like 'turn type calculator', 5, false
+      it_behaves_like 'turn type calculator', 6, false
+    end
+
+    context 'when three players' do
+      let(:players_count) { 3 }
+
+      it_behaves_like 'turn type calculator', 1, true
+      it_behaves_like 'turn type calculator', 2, true
+      it_behaves_like 'turn type calculator', 3, true
+      it_behaves_like 'turn type calculator', 4, false
+      it_behaves_like 'turn type calculator', 5, false
+      it_behaves_like 'turn type calculator', 6, false
+      it_behaves_like 'turn type calculator', 7, false
+      it_behaves_like 'turn type calculator', 8, false
+      it_behaves_like 'turn type calculator', 9, false
+    end
+
+    context 'when four players' do
+      let(:players_count) { 4 }
+
+      it_behaves_like 'turn type calculator', 1, true
+      it_behaves_like 'turn type calculator', 2, true
+      it_behaves_like 'turn type calculator', 3, true
+      it_behaves_like 'turn type calculator', 4, true
+      it_behaves_like 'turn type calculator', 5, false
+      it_behaves_like 'turn type calculator', 6, false
+      it_behaves_like 'turn type calculator', 7, false
+      it_behaves_like 'turn type calculator', 8, false
+      it_behaves_like 'turn type calculator', 9, false
+      it_behaves_like 'turn type calculator', 10, false
+      it_behaves_like 'turn type calculator', 11, false
+      it_behaves_like 'turn type calculator', 12, false
+    end
+  end
 end
