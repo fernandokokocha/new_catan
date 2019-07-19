@@ -20,8 +20,7 @@ class GainResources < Interactor
   end
 
   def turn_valid?
-    min_turn = state.players.count * 2 + 1
-    state.turn >= min_turn
+    TurnTypeCalculator.new(state.players.count).regular_turn?(state.turn)
   end
 
   def valid_chits
