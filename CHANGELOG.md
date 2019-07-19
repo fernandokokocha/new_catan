@@ -1,5 +1,12 @@
 ## [Unreleased]
 ### Added
+- ...
+
+### Changed
+- ...
+
+## [0.6.0]
+### Added
 - TurnTypeCalculator helper
 - GainResources interactor
 
