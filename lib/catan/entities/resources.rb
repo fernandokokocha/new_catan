@@ -7,6 +7,8 @@ class Resources
   GRAIN = :grain
   ORE = :ore
 
+  ALL = [BRICK, LUMBER, WOOL, GRAIN, ORE].freeze
+
   attr_accessor :brick, :lumber, :wool, :grain, :ore
 
   def initialize(brick:, lumber:, wool:, grain:, ore:)

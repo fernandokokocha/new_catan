@@ -24,12 +24,17 @@ class Player
     %i[orange red white blue].include?(@color)
   end
 
+  def can_afford?(cost)
+    Resources::ALL.each do |resource|
+      return false if @resources.send(resource) < cost.send(resource)
+    end
+    true
+  end
+
   def pay(cost)
-    @resources.substitute(:brick, cost.brick)
-    @resources.substitute(:lumber, cost.lumber)
-    @resources.substitute(:wool, cost.wool)
-    @resources.substitute(:grain, cost.grain)
-    @resources.substitute(:ore, cost.ore)
+    Resources::ALL.each do |resource|
+      @resources.substitute(resource, cost.send(resource))
+    end
   end
 
   def ==(other)

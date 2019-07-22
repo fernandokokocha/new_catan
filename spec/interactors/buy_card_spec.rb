@@ -3,6 +3,7 @@
 describe BuyCard do
   let(:game) { Game.new }
   let(:interactor) { BuyCard.new }
+  let(:player) { game.current_player }
 
   subject(:call) { game.handle(interactor) }
 
@@ -13,8 +14,6 @@ describe BuyCard do
       game.handle(SetResources.new(player: player, resource_values: { wool: 3, grain: 2, ore: 1, lumber: 1, brick: 0 }))
       game.handle(TakeAction.new)
     end
-
-    let(:player) { game.current_player }
 
     it_behaves_like 'mutating interaction'
 
@@ -55,6 +54,8 @@ describe BuyCard do
     before(:each) do
       game.handle(@setup_game_interactor)
       game.handle(SetTurn.new(turn: 1))
+      game.handle(SetResources.new(player: player, resource_values: { wool: 3, grain: 2, ore: 1, lumber: 1, brick: 0 }))
+      game.handle(TakeAction.new)
     end
 
     it_behaves_like 'not mutating interaction'
@@ -72,6 +73,7 @@ describe BuyCard do
     before(:each) do
       game.handle(@setup_game_interactor)
       game.handle(SetTurn.new(turn: 10))
+      game.handle(SetResources.new(player: player, resource_values: { wool: 3, grain: 2, ore: 1, lumber: 1, brick: 0 }))
     end
 
     it_behaves_like 'not mutating interaction'
@@ -85,15 +87,22 @@ describe BuyCard do
     end
   end
 
-  # context 'when player has no resources' do
-  #   it_behaves_like 'not mutating interaction'
-  #
-  #   it 'returns failure' do
-  #     expect(call.success?).to be(false)
-  #   end
-  #
-  #   it 'returns descriptive message' do
-  #     expect(call.message).to eq('Player has no resources')
-  #   end
-  # end
+  context 'when player has no resources' do
+    before(:each) do
+      game.handle(@setup_game_interactor)
+      game.handle(SetTurn.new(turn: 10))
+      game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 2, ore: 1, lumber: 1, brick: 0 }))
+      game.handle(TakeAction.new)
+    end
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Player has not enough resources')
+    end
+  end
 end
