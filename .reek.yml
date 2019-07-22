@@ -10,7 +10,9 @@ detectors:
   TooManyInstanceVariables:
     exclude:
       - 'State' # State consists on many
+      - 'Player'
       - 'Resources' # Resources consists of 5 different resource types
+      - 'Cost' # Cost consists of 5 different resource types
   FeatureEnvy:
     exclude:
       - 'GameSerializer' # serializers must be envious

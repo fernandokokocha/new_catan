@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- BuyCard interactor (a dummy implementation)
 
 ### Changed
 - ...

@@ -32,6 +32,11 @@ class Resources
     send("#{resource}=", old_value + 1)
   end
 
+  def substitute(resource, subtrahend)
+    old_value = send(resource)
+    send("#{resource}=", old_value - subtrahend)
+  end
+
   def ==(other)
     (other.class == self.class) &&
       (other.brick == @brick) &&
