@@ -17,7 +17,8 @@ detectors:
     exclude:
       - 'GameSerializer' # serializers must be envious
       - 'GameDeserializer' # deserializers must be envious
-      - 'GainResources#mutate_gain_resources' # deserializers must be envious
+      - 'GainResources#mutate_gain_resources'
+      - 'ScoreCalculator#victory_cards_count'
   UtilityFunction:
     exclude:
       - 'GameSerializer' # serializers are utilities by their nature

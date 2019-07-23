@@ -51,11 +51,6 @@ describe SettleWithRoad do
         call
         expect(game.action_taken?).to be(true)
       end
-
-      it 'increments current player score' do
-        call
-        expect(game.score(game.current_player)).to be(1)
-      end
     end
 
     context 'when on not clear state - first turn' do

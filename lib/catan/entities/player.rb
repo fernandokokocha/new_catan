@@ -4,14 +4,13 @@ class Player
   EmptyName = Class.new(ArgumentError)
   InvalidColor = Class.new(ArgumentError)
 
-  attr_reader :index, :name, :color, :resources, :cards
+  attr_reader :index, :name, :color, :resources
 
   def initialize(index:, name:, color:, resources: Resources.create_empty_bank)
     @index = index
     @name = name
     @color = color.to_sym
     @resources = resources
-    @cards = []
     raise EmptyName unless name_valid?
     raise InvalidColor unless color_valid?
   end

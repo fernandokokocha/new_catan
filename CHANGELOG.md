@@ -1,9 +1,9 @@
 ## [Unreleased]
 ### Added
-- BuyCard interactor (a dummy implementation)
+- BuyCard interactor (only victory cards so far)
 
 ### Changed
-- ...
+- Extracted score calculations to ScoreCalculator helper
 
 ## [0.6.0]
 ### Added

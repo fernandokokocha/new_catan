@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class State
-  attr_accessor :setup, :players, :settlements, :roads, :tiles, :turn, :action_taken
+  attr_accessor :setup, :players, :settlements, :roads, :tiles, :turn, :action_taken, :cards
 
   def initialize
     @setup = false
@@ -11,6 +11,7 @@ class State
     @tiles = TileInitializer.basic_tiles
     @turn = 1
     @action_taken = false
+    @cards = CardsInitializer.create_set
   end
 
   def values

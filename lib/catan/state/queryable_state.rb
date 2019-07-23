@@ -25,6 +25,6 @@ class QueryableState < SimpleDelegator
   end
 
   def score(player)
-    settlements.select { |settlement| settlement.owner == player }.count
+    ScoreCalculator.new(settlements: settlements, cards: cards).calc(player)
   end
 end

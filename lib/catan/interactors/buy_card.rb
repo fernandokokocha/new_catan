@@ -13,7 +13,10 @@ class BuyCard < Interactor
 
   def mutate
     current_player.pay(COST)
-    current_player.cards << Card.new
+    state
+      .cards
+      .find(&:no_owner?)
+      .give(current_player)
   end
 
   def turn_valid?

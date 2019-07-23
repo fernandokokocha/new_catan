@@ -6,6 +6,7 @@ require_relative File.join('.', 'test_interactors', 'set_turn.rb')
 require_relative File.join('.', 'test_interactors', 'take_action.rb')
 require_relative File.join('.', 'test_interactors', 'build_settlement.rb')
 require_relative File.join('.', 'test_interactors', 'set_resources.rb')
+require_relative File.join('.', 'test_interactors', 'grant_card.rb')
 
 RSpec.configure do |config|
   config.before(:example) do

@@ -26,10 +26,9 @@ describe BuyCard do
       expect(game.current_player.resources).to eq(Resources.new(wool: 2, grain: 1, ore: 0, lumber: 1, brick: 0))
     end
 
-    it 'gives a card' do
+    it 'gives first card to current player' do
       call
-      expect(game.current_player.cards.length).to be(1)
-      expect(game.current_player.cards[0]).to be_a(Card)
+      expect(game.cards.first).to be_owned_by(game.current_player)
     end
 
     it 'does not untake action' do

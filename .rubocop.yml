@@ -24,3 +24,7 @@ Style/AsciiComments:
   AllowedChars:
     - ╲
     - ╱
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/helpers/score_calculator_spec.rb' # Ruby does not allow one-line multi {}-syntax
