@@ -1,5 +1,12 @@
 ## [Unreleased]
 ### Added
+- ...
+
+### Changed
+- ...
+
+## [0.7.0]
+### Added
 - BuyCard interactor (only victory cards so far)
 
 ### Changed
