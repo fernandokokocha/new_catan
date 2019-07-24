@@ -3,7 +3,11 @@
 - ...
 
 ### Changed
-- Fixed GameSerializer and GameDeserializer after adding cards
+- ...
+
+## [0.7.1]
+### Changed
+- Fixed GameSerializer and GameDeserializer after adding
 
 ## [0.7.0]
 ### Added
