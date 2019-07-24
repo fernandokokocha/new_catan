@@ -15,7 +15,8 @@ describe GameSerializer do
         'roads' => [],
         'tiles' => tiles,
         'turn' => 1,
-        'action_taken' => false
+        'action_taken' => false,
+        'cards' => cards_initially
       }
     end
 
@@ -66,7 +67,73 @@ describe GameSerializer do
         ],
         'tiles' => tiles,
         'turn' => 5,
-        'action_taken' => false
+        'action_taken' => false,
+        'cards' => cards_initially
+      }
+    end
+
+    it 'serializes to hash' do
+      call
+      expect(call).to eq(expected)
+    end
+  end
+
+  context 'after 4 cards are granted' do
+    before(:each) do
+      game.handle(@setup_game_interactor)
+      game.handle(GrantCard.new(player: game.players[0]))
+      game.handle(GrantCard.new(player: game.players[0]))
+      game.handle(GrantCard.new(player: game.players[0]))
+      game.handle(GrantCard.new(player: game.players[1]))
+    end
+
+    let(:expected) do
+      {
+        'setup' => true,
+        'players' => [
+          {
+            'name' => 'Bartek',
+            'color' => 'orange',
+            'resources' => { 'brick' => 0, 'lumber' => 0, 'wool' => 0, 'grain' => 0, 'ore' => 0 }
+          },
+          {
+            'name' => 'Leo',
+            'color' => 'blue',
+            'resources' => { 'brick' => 0, 'lumber' => 0, 'wool' => 0, 'grain' => 0, 'ore' => 0 }
+          }
+        ],
+        'settlements' => [],
+        'roads' => [],
+        'tiles' => tiles,
+        'turn' => 1,
+        'action_taken' => false,
+        'cards' => [
+          { 'type' => 'victory', 'owner_name' => 'Bartek' },
+          { 'type' => 'victory', 'owner_name' => 'Bartek' },
+          { 'type' => 'victory', 'owner_name' => 'Bartek' },
+          { 'type' => 'victory', 'owner_name' => 'Leo' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' },
+          { 'type' => 'victory' }
+        ]
       }
     end
 
@@ -173,6 +240,36 @@ describe GameSerializer do
         'resource' => 'ore',
         'chit' => 12
       }
+    ]
+  end
+
+  def cards_initially
+    [
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' },
+      { 'type' => 'victory' }
     ]
   end
 end

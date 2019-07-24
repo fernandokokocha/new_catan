@@ -24,4 +24,9 @@ class Card
   def victory?
     true
   end
+
+  def ==(other)
+    (other.class == self.class) &&
+      (other.owner == @owner)
+  end
 end

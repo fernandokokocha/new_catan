@@ -22,7 +22,8 @@ class State
       roads: @roads,
       tiles: @tiles,
       action_taken: @action_taken,
-      turn: @turn
+      turn: @turn,
+      cards: @cards
     }
   end
 

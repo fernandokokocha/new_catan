@@ -13,7 +13,8 @@ class GameSerializer
       'roads' => @game.roads.map { |road| serialize_road(road) },
       'tiles' => @game.tiles.sort_by(&:index).map { |tile| serialize_tile(tile) },
       'turn' => @game.turn,
-      'action_taken' => @game.action_taken?
+      'action_taken' => @game.action_taken?,
+      'cards' => @game.cards.map { |card| serialize_card(card) }
     }
   end
 
@@ -55,6 +56,15 @@ class GameSerializer
       'index' => tile.index,
       'resource' => tile.resource.to_s,
       'chit' => tile.chit
+    }
+  end
+
+  def serialize_card(card)
+    return { 'type' => 'victory' } if card.no_owner?
+
+    {
+      'type' => 'victory',
+      'owner_name' => card.owner.name
     }
   end
 end

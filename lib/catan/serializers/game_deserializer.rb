@@ -22,6 +22,7 @@ class GameDeserializer
     state.tiles = deserialize_tiles(@hash.fetch('tiles'))
     state.turn = @hash.fetch('turn')
     state.action_taken = @hash.fetch('action_taken')
+    state.cards = deserialize_cards(@hash.fetch('cards'))
   end
 
   def deserialize_players(players)
@@ -58,5 +59,17 @@ class GameDeserializer
   def deserialize_tiles(_tiles)
     # no need to deserialize - every set of tiles is the same (for now)
     Game.new.tiles
+  end
+
+  def deserialize_cards(cards)
+    cards.map do |card|
+      owner_name = card['owner_name']
+      Card.new.tap do |card_entity|
+        if owner_name.is_a?(String)
+          owner = ArrayUtils.find_by_attribute(players, :name, owner_name)
+          card_entity.give(owner)
+        end
+      end
+    end
   end
 end

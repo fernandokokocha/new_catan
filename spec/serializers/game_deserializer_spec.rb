@@ -41,4 +41,27 @@ describe GameDeserializer do
       end
     end
   end
+
+  context 'after 4 cards are granted' do
+    before(:each) do
+      game.handle(@setup_game_interactor)
+      game.handle(GrantCard.new(player: game.players[0]))
+      game.handle(GrantCard.new(player: game.players[0]))
+      game.handle(GrantCard.new(player: game.players[0]))
+      game.handle(GrantCard.new(player: game.players[1]))
+    end
+
+    it 'deserializes to equal game object' do
+      expect(call).to eq(game)
+    end
+
+    context 'when serialized to json' do
+      let(:json) { serializer.call.to_json }
+      let(:hash) { JSON.parse(json) }
+
+      it 'deserializes from json' do
+        expect(call).to eq(game)
+      end
+    end
+  end
 end
