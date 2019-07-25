@@ -47,9 +47,9 @@ describe ScoreCalculator do
   context 'when some settlements' do
     before(:each) do
       game.handle(@setup_game_interactor)
-      game.handle(BuildSettlement.new(player: game.players[0], spot: 1))
-      game.handle(BuildSettlement.new(player: game.players[0], spot: 3))
-      game.handle(BuildSettlement.new(player: game.players[1], spot: 5))
+      game.handle(GrantSettlement.new(player: game.players[0], spot: 1))
+      game.handle(GrantSettlement.new(player: game.players[0], spot: 3))
+      game.handle(GrantSettlement.new(player: game.players[1], spot: 5))
     end
 
     it_behaves_like 'score calculator', 0 do let(:player) { nil } end
@@ -75,9 +75,9 @@ describe ScoreCalculator do
   context 'when some settlements and cards' do
     before(:each) do
       game.handle(@setup_game_interactor)
-      game.handle(BuildSettlement.new(player: game.players[1], spot: 1))
-      game.handle(BuildSettlement.new(player: game.players[1], spot: 3))
-      game.handle(BuildSettlement.new(player: game.players[1], spot: 5))
+      game.handle(GrantSettlement.new(player: game.players[1], spot: 1))
+      game.handle(GrantSettlement.new(player: game.players[1], spot: 3))
+      game.handle(GrantSettlement.new(player: game.players[1], spot: 5))
 
       game.handle(GrantCard.new(player: game.players[0]))
       game.handle(GrantCard.new(player: game.players[0]))

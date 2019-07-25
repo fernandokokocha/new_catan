@@ -28,7 +28,7 @@ describe GainResources do
 
     context 'when one settlements around' do
       before(:each) do
-        game.handle(BuildSettlement.new(player: player, spot: spot))
+        game.handle(GrantSettlement.new(player: player, spot: spot))
       end
 
       let(:player) { game.players[0] }
@@ -58,8 +58,8 @@ describe GainResources do
 
     context 'when many settlements around from same player' do
       before(:each) do
-        game.handle(BuildSettlement.new(player: player, spot: spot))
-        game.handle(BuildSettlement.new(player: player, spot: spot_2))
+        game.handle(GrantSettlement.new(player: player, spot: spot))
+        game.handle(GrantSettlement.new(player: player, spot: spot_2))
       end
 
       let(:player) { game.players[0] }
@@ -90,8 +90,8 @@ describe GainResources do
 
     context 'when many settlements around from different players' do
       before(:each) do
-        game.handle(BuildSettlement.new(player: player, spot: spot))
-        game.handle(BuildSettlement.new(player: player_2, spot: spot_2))
+        game.handle(GrantSettlement.new(player: player, spot: spot))
+        game.handle(GrantSettlement.new(player: player_2, spot: spot_2))
       end
 
       let(:player) { game.players[0] }
@@ -135,8 +135,8 @@ describe GainResources do
 
     context 'when two settlements around two different tiles' do
       before(:each) do
-        game.handle(BuildSettlement.new(player: player, spot: spot))
-        game.handle(BuildSettlement.new(player: player, spot: spot_2))
+        game.handle(GrantSettlement.new(player: player, spot: spot))
+        game.handle(GrantSettlement.new(player: player, spot: spot_2))
       end
 
       let(:chit) { 3 }
@@ -168,7 +168,7 @@ describe GainResources do
 
     context 'when one settlement around two different tiles' do
       before(:each) do
-        game.handle(BuildSettlement.new(player: player, spot: spot))
+        game.handle(GrantSettlement.new(player: player, spot: spot))
       end
 
       let(:chit) { 3 }

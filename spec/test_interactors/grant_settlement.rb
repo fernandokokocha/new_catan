@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BuildSettlement < Interactor
+class GrantSettlement < Interactor
   def initialize(player:, spot:)
     @player = player
     @spot = spot
