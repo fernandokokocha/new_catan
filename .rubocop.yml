@@ -16,6 +16,7 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Exclude:
     - 'lib/catan/serializers/game_serializer.rb' # this methid doesn't congruent here
+    - 'lib/catan/interactors/buy_settlement.rb' # disagreed
 
 Style/Documentation:
   Enabled: false

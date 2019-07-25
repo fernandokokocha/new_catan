@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- BuySettlement interactor
 
 ### Changed
 - ...
