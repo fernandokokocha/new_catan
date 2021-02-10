@@ -1,9 +1,15 @@
 ## [Unreleased]
 ### Added
-- BuySettlement interactor
+- ...
 
 ### Changed
 - ...
+
+## [0.8.0]
+### Added
+- BuySettlement interactor
+- GrantSettlement helper interactor
+- BuyRoad interactor
 
 ## [0.7.1]
 ### Changed
