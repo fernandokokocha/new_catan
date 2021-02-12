@@ -15,4 +15,8 @@ class Interactor
   def validate; end
 
   def mutate; end
+
+  def raise_uninitialized
+    raise IllegalOperation, 'Game not initialized'
+  end
 end

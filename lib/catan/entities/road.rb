@@ -22,4 +22,8 @@ class Road
   def same_or_symmetric_to(other)
     [from, to].sort == [other.from, other.to].sort
   end
+
+  def adjacent_to?(spot)
+    (from == spot) || (to == spot)
+  end
 end

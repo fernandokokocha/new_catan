@@ -25,7 +25,11 @@ class BuyRoad < Interactor
 
   def mutate
     current_player.pay(COST)
-    state.roads << Road.new(from: @from_index, to: @to_index, owner: current_player)
+    state.roads << new_road_candidate
+  end
+
+  def new_road_candidate
+    @new_road_candidate ||= Road.new(from: @from_index, to: @to_index, owner: current_player)
   end
 
   def current_player
@@ -38,19 +42,14 @@ class BuyRoad < Interactor
 
   def player_has_road_to?
     players_roads.any? do |road|
-      from = road.from
-      to = road.to
-      from.equal?(@from_index) ||
-        from.equal?(@to_index) ||
-        to.equal?(@from_index) ||
-        to.equal?(@to_index)
+      road.adjacent_to?(@from_index) || road.adjacent_to?(@to_index)
     end
   end
 
   def road_already_exists?
     state
       .roads
-      .any? { |road| road.from.equal?(@from_index) && road.to.equal?(@to_index) }
+      .any? { |road| road.same_or_symmetric_to(new_road_candidate) }
   end
 
   def players_roads
@@ -60,10 +59,6 @@ class BuyRoad < Interactor
   end
 
   private
-
-  def raise_uninitialized
-    raise IllegalOperation, 'Game not initialized'
-  end
 
   def raise_invalid_turn(turn)
     raise IllegalOperation, "Invalid turn for this operation: #{turn}"

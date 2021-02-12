@@ -13,10 +13,6 @@ class EndTurn < Interactor
 
   private
 
-  def raise_uninitialized
-    raise IllegalOperation, 'Game not initialized'
-  end
-
   def raise_action_not_taken
     raise IllegalOperation, 'Action has not been taken'
   end

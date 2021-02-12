@@ -48,10 +48,6 @@ class BuySettlement < Interactor
 
   private
 
-  def raise_uninitialized
-    raise IllegalOperation, 'Game not initialized'
-  end
-
   def raise_invalid_turn(turn)
     raise IllegalOperation, "Invalid turn for this operation: #{turn}"
   end

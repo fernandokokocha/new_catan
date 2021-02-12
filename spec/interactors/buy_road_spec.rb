@@ -110,7 +110,7 @@ describe BuyRoad do
       game.handle(@setup_game_interactor)
       game.handle(SetTurn.new(turn: 1))
       game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 0, ore: 1, lumber: 2, brick: 1 }))
-      game.handle(GrantSettlement.new(player: player, spot: 1))
+      game.handle(GrantRoad.new(player: player, from: 1, to: 2))
       game.handle(TakeAction.new)
     end
 
@@ -130,7 +130,7 @@ describe BuyRoad do
       game.handle(@setup_game_interactor)
       game.handle(SetTurn.new(turn: 10))
       game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 0, ore: 1, lumber: 2, brick: 1 }))
-      game.handle(GrantSettlement.new(player: player, spot: 1))
+      game.handle(GrantRoad.new(player: player, from: 1, to: 2))
     end
 
     it_behaves_like 'not mutating interaction'
@@ -149,7 +149,7 @@ describe BuyRoad do
       game.handle(@setup_game_interactor)
       game.handle(SetTurn.new(turn: 10))
       game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 0, ore: 0, lumber: 0, brick: 0 }))
-      game.handle(GrantSettlement.new(player: player, spot: 1))
+      game.handle(GrantRoad.new(player: player, from: 1, to: 2))
       game.handle(TakeAction.new)
     end
 
@@ -164,11 +164,31 @@ describe BuyRoad do
     end
   end
 
-  context 'when no roads and no settlement touches new road' do
+  context 'when no roads touches new road' do
     before(:each) do
       game.handle(@setup_game_interactor)
       game.handle(SetTurn.new(turn: 10))
       game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 0, ore: 1, lumber: 2, brick: 1 }))
+      game.handle(TakeAction.new)
+    end
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq('Player has no road connetion to new road')
+    end
+  end
+
+  context 'when other players road touches' do
+    before(:each) do
+      game.handle(@setup_game_interactor)
+      game.handle(SetTurn.new(turn: 10))
+      game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 0, ore: 1, lumber: 2, brick: 1 }))
+      game.handle(GrantRoad.new(player: other_player, from: 1, to: 2))
       game.handle(TakeAction.new)
     end
 
