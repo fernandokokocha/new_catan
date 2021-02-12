@@ -34,6 +34,11 @@ class Resources
     send("#{resource}=", old_value + 1)
   end
 
+  def remove_one(resource)
+    old_value = send(resource)
+    send("#{resource}=", old_value - 1)
+  end
+
   def substitute(resource, subtrahend)
     old_value = send(resource)
     send("#{resource}=", old_value - subtrahend)

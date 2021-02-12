@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- TradeWithBank interactor
 
 ### Changed
 - ...
