@@ -1,9 +1,13 @@
 ## [Unreleased]
 ### Added
-- TradeWithBank interactor
+- ...
 
 ### Changed
 - ...
+
+## [0.9.0]
+### Added
+- TradeWithBank intergactor
 
 ## [0.8.0]
 ### Added
