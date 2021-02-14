@@ -1,5 +1,12 @@
 ## [Unreleased]
 ### Added
+- ...
+
+### Changed
+- ...
+
+## [0.10.0]
+### Added
 - BuyCity interactor
 
 ### Changed
