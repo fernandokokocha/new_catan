@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- ...
+- BuyCity interactor
 
 ### Changed
 - Fixed ability to create roads from spots that don't border
