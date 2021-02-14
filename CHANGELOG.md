@@ -3,7 +3,7 @@
 - ...
 
 ### Changed
-- ...
+- Fixed ability to create roads from spots that don't border
 
 ## [0.9.0]
 ### Added
