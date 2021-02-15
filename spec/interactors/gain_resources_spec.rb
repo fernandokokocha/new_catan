@@ -26,7 +26,7 @@ describe GainResources do
       end
     end
 
-    context 'when one settlements around' do
+    context 'when one settlement around' do
       before(:each) do
         game.handle(GrantSettlement.new(player: player, spot: spot))
       end
@@ -188,6 +188,68 @@ describe GainResources do
         call
         expected = Resources.new(
           brick: 2,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player.resources).to eq(expected)
+      end
+    end
+
+    context 'when one city around' do
+      before(:each) do
+        game.handle(GrantCity.new(player: player, spot: spot))
+      end
+
+      let(:player) { game.players[0] }
+      let(:spot) { 1 }
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+
+      it 'gives resources to player 1' do
+        call
+        expected = Resources.new(
+          brick: 2,
+          lumber: 0,
+          wool: 0,
+          grain: 0,
+          ore: 0
+        )
+        expect(player.resources).to eq(expected)
+      end
+    end
+
+    context 'when two cities around' do
+      before(:each) do
+        game.handle(GrantCity.new(player: player, spot: spot))
+        game.handle(GrantCity.new(player: player, spot: spot_2))
+      end
+
+      let(:player) { game.players[0] }
+      let(:spot) { 1 }
+      let(:spot_2) { 9 }
+
+      it 'returns success' do
+        expect(call.success?).to be(true)
+      end
+
+      it 'sets action taken' do
+        call
+        expect(game.action_taken?).to be(true)
+      end
+
+      it 'gives resources to player 1' do
+        call
+        expected = Resources.new(
+          brick: 4,
           lumber: 0,
           wool: 0,
           grain: 0,

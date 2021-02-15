@@ -33,10 +33,22 @@ class GainResources < Interactor
   end
 
   def mutate_gain_resources(tile)
+    mutate_gain_from_settlements(tile)
+    mutate_gain_from_cities(tile)
+  end
+
+  def mutate_gain_from_settlements(tile)
     state
       .settlements
       .select { |settlement| MapGeometry.tile_borders_spot?(tile.index, settlement.spot_index) }
       .each { |settlement| settlement.owner.resources.add_one(tile.resource) }
+  end
+
+  def mutate_gain_from_cities(tile)
+    state
+      .cities
+      .select { |city| MapGeometry.tile_borders_spot?(tile.index, city.spot_index) }
+      .each { |city| 2.times { city.owner.resources.add_one(tile.resource) } }
   end
 
   def tiles
