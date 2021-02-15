@@ -3,6 +3,11 @@
 - ...
 
 ### Changed
+- ...
+
+## [0.11.0]
+
+### Changed
 - Fixed GameSerializer and GameDeserializer after adding cities to game state
 - Truly fixed ability to create roads from spots that don't border. Previously it was fixed
   only on the entity level, while what really matters is interactor level. 
