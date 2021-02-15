@@ -42,10 +42,6 @@ class TradeWithBank < Interactor
 
   private
 
-  def raise_invalid_turn(turn)
-    raise IllegalOperation, "Invalid turn for this operation: #{turn}"
-  end
-
   def raise_action_not_taken
     raise IllegalOperation, 'Action has not been taken'
   end

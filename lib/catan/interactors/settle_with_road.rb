@@ -57,10 +57,6 @@ class SettleWithRoad < Interactor
 
   private
 
-  def raise_invalid_turn(turn)
-    raise IllegalOperation, "Invalid turn for this operation: #{turn}"
-  end
-
   def raise_action_already_taken
     raise IllegalOperation, 'Action already taken'
   end

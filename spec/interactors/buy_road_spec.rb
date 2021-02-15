@@ -223,4 +223,27 @@ describe BuyRoad do
       expect(call.message).to eq("Can't overbuild existing road")
     end
   end
+
+  context 'when road requested with not bordering spots' do
+    let(:from_index) { 2 }
+    let(:to_index) { 4 }
+
+    before(:each) do
+      game.handle(@setup_game_interactor)
+      game.handle(SetTurn.new(turn: 10))
+      game.handle(SetResources.new(player: player, resource_values: { wool: 0, grain: 0, ore: 1, lumber: 2, brick: 1 }))
+      game.handle(GrantRoad.new(player: player, from: 1, to: 2))
+      game.handle(TakeAction.new)
+    end
+
+    it_behaves_like 'not mutating interaction'
+
+    it 'returns failure' do
+      expect(call.success?).to be(false)
+    end
+
+    it 'returns descriptive message' do
+      expect(call.message).to eq("Spots don't border")
+    end
+  end
 end

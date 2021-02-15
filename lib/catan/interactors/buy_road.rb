@@ -30,6 +30,8 @@ class BuyRoad < Interactor
 
   def new_road_candidate
     @new_road_candidate ||= Road.new(from: @from_index, to: @to_index, owner: current_player)
+  rescue ArgumentError
+    raise_spots_dont_border
   end
 
   def current_player
@@ -60,10 +62,6 @@ class BuyRoad < Interactor
 
   private
 
-  def raise_invalid_turn(turn)
-    raise IllegalOperation, "Invalid turn for this operation: #{turn}"
-  end
-
   def raise_action_not_taken
     raise IllegalOperation, 'Action has not been taken'
   end
@@ -78,5 +76,9 @@ class BuyRoad < Interactor
 
   def raise_road_already_exists
     raise IllegalOperation, "Can't overbuild existing road"
+  end
+
+  def raise_spots_dont_border
+    raise IllegalOperation, "Spots don't border"
   end
 end
