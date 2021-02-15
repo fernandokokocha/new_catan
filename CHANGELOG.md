@@ -6,6 +6,7 @@
 - Fixed GameSerializer and GameDeserializer after adding cities to game state
 - Truly fixed ability to create roads from spots that don't border. Previously it was fixed
   only on the entity level, while what really matters is interactor level. 
+- Updated score calculator - city grants two victory points
 
 ## [0.10.0]
 ### Added
