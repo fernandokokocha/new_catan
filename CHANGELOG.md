@@ -3,7 +3,7 @@
 - ...
 
 ### Changed
-- ...
+- Fixed GameSerializer and GameDeserializer after adding cities to game state
 
 ## [0.10.0]
 ### Added

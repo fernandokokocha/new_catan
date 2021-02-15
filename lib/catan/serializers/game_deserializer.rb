@@ -18,6 +18,7 @@ class GameDeserializer
     state.setup = @hash.fetch('setup')
     state.players = players
     state.settlements = deserialize_settlements(@hash.fetch('settlements'))
+    state.cities = deserialize_cities(@hash.fetch('cities'))
     state.roads = deserialize_roads(@hash.fetch('roads'))
     state.tiles = deserialize_tiles(@hash.fetch('tiles'))
     state.turn = @hash.fetch('turn')
@@ -46,6 +47,13 @@ class GameDeserializer
     settlements.map do |settlement|
       owner = ArrayUtils.find_by_attribute(players, :name, settlement.fetch('owner_name'))
       Settlement.new(spot_index: settlement.fetch('spot_index'), owner: owner)
+    end
+  end
+
+  def deserialize_cities(cities)
+    cities.map do |city|
+      owner = ArrayUtils.find_by_attribute(players, :name, city.fetch('owner_name'))
+      City.new(spot_index: city.fetch('spot_index'), owner: owner)
     end
   end
 

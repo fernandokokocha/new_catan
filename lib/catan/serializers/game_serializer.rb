@@ -10,6 +10,7 @@ class GameSerializer
       'setup' => @game.setup?,
       'players' => @game.players.map { |player| serialize_player(player) },
       'settlements' => @game.settlements.map { |settlement| serialize_settlement(settlement) },
+      'cities' => @game.cities.map { |city| serialize_city(city) },
       'roads' => @game.roads.map { |road| serialize_road(road) },
       'tiles' => @game.tiles.sort_by(&:index).map { |tile| serialize_tile(tile) },
       'turn' => @game.turn,
@@ -40,6 +41,13 @@ class GameSerializer
     {
       'spot_index' => settlement.spot_index,
       'owner_name' => settlement.owner.name
+    }
+  end
+
+  def serialize_city(city)
+    {
+      'spot_index' => city.spot_index,
+      'owner_name' => city.owner.name
     }
   end
 

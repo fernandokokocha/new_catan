@@ -12,6 +12,7 @@ describe GameSerializer do
         'setup' => false,
         'players' => [],
         'settlements' => [],
+        'cities' => [],
         'roads' => [],
         'tiles' => tiles,
         'turn' => 1,
@@ -59,6 +60,7 @@ describe GameSerializer do
           { 'spot_index' => 5, 'owner_name' => 'Leo' },
           { 'spot_index' => 7, 'owner_name' => 'Bartek' }
         ],
+        'cities' => [],
         'roads' => [
           { 'from' => 1, 'to' => 2, 'owner_name' => 'Bartek' },
           { 'from' => 3, 'to' => 4, 'owner_name' => 'Leo' },
@@ -103,6 +105,7 @@ describe GameSerializer do
           }
         ],
         'settlements' => [],
+        'cities' => [],
         'roads' => [],
         'tiles' => tiles,
         'turn' => 1,
